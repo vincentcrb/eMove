@@ -31,6 +31,11 @@ class Users
      */
     private $password;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Reservation", inversedBy="user")
+     */
+    private $reservation;
+
     public function getId()
     {
         return $this->id;
@@ -68,6 +73,18 @@ class Users
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getReservation(): ?Reservation
+    {
+        return $this->reservation;
+    }
+
+    public function setReservation(?Reservation $reservation): self
+    {
+        $this->reservation = $reservation;
 
         return $this;
     }
