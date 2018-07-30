@@ -19,7 +19,7 @@ class Reservation
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Users", mappedBy="reservation")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="reservation")
      */
     private $user;
 
@@ -66,14 +66,14 @@ class Reservation
     }
 
     /**
-     * @return Collection|Users[]
+     * @return Collection|User[]
      */
     public function getUser(): Collection
     {
         return $this->user;
     }
 
-    public function addUser(Users $user): self
+    public function addUser(User $user): self
     {
         if (!$this->user->contains($user)) {
             $this->user[] = $user;
@@ -83,7 +83,7 @@ class Reservation
         return $this;
     }
 
-    public function removeUser(Users $user): self
+    public function removeUser(User $user): self
     {
         if ($this->user->contains($user)) {
             $this->user->removeElement($user);
