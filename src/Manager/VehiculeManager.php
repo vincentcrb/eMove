@@ -31,4 +31,23 @@ class VehiculeManager {
         $this->em->persist($vehicule);
         $this->em->flush();
     }
+
+    public function deleteVehicule($id){
+        $movie = $this->getVehicule($id);
+
+        $this->em->remove($movie);
+        $this->em->flush();
+    }
+
+    public function getVehicules()
+    {
+        return $this->em->getRepository(Vehicule:: class)
+            ->findAll();
+    }
+
+    public function getVehicule($id)
+    {
+        return $this->em->getRepository(Vehicule:: class)
+            ->find($id);
+    }
 }

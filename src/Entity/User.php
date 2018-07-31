@@ -33,6 +33,11 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @ORM\Column(name="isAdmin", type="boolean" , nullable=true)
+     */
+    private $isAdmin;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Reservation", inversedBy="user")
      */
     private $reservation;
@@ -90,11 +95,39 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * Set isAdmin
+     *
+     * @param boolean $isAdmin
+     *
+     * @return User
+     */
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+
+        return $this;
+    }
+
+    /**
+     * Get isAdmin
+     *
+     * @return boolean
+     */
+    public function getIsAdmin()
+    {
+        return $this->isAdmin;
+    }
+
     public function getRoles()
     {
         // TODO: Implement getRoles() method.
-        return ['ROLE_USER'];
-
+        if($this->isAdmin){
+            return ['ROLE_ADMIN'];
+        }
+        else{
+            return ['ROLE_USER'];
+        }
     }
 
     public function getSalt()
