@@ -24,24 +24,24 @@ class Reservation
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Vehicule", mappedBy="reservation")
+     * @ORM\OneToMany(targetEntity="App\Entity\Vehicle", mappedBy="reservation")
      */
-    private $vehicule;
+    private $vehicle;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $date_debut;
+    private $date_start;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $date_fin;
+    private $date_end;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $prix;
+    private $price;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Status", mappedBy="reservation")
@@ -49,14 +49,14 @@ class Reservation
     private $status;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Facture", mappedBy="reservation", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Bill", mappedBy="reservation", cascade={"persist", "remove"})
      */
-    private $facture;
+    private $bill;
 
     public function __construct()
     {
         $this->user = new ArrayCollection();
-        $this->vehicule = new ArrayCollection();
+        $this->vehicle = new ArrayCollection();
         $this->status = new ArrayCollection();
     }
 
@@ -97,68 +97,68 @@ class Reservation
     }
 
     /**
-     * @return Collection|Vehicule[]
+     * @return Collection|Vehicle[]
      */
-    public function getVehicule(): Collection
+    public function getVehicle(): Collection
     {
-        return $this->vehicule;
+        return $this->vehicle;
     }
 
-    public function addVehicule(Vehicule $vehicule): self
+    public function addVehicle(Vehicle $vehicle): self
     {
-        if (!$this->vehicule->contains($vehicule)) {
-            $this->vehicule[] = $vehicule;
-            $vehicule->setReservation($this);
+        if (!$this->vehicle->contains($vehicle)) {
+            $this->vehicle[] = $vehicle;
+            $vehicle->setReservation($this);
         }
 
         return $this;
     }
 
-    public function removeVehicule(Vehicule $vehicule): self
+    public function removeVehicle(Vehicle $vehicle): self
     {
-        if ($this->vehicule->contains($vehicule)) {
-            $this->vehicule->removeElement($vehicule);
+        if ($this->vehicle->contains($vehicle)) {
+            $this->vehicle->removeElement($vehicle);
             // set the owning side to null (unless already changed)
-            if ($vehicule->getReservation() === $this) {
-                $vehicule->setReservation(null);
+            if ($vehicle->getReservation() === $this) {
+                $vehicle->setReservation(null);
             }
         }
 
         return $this;
     }
 
-    public function getDateDebut(): ?\DateTimeInterface
+    public function getDateStart(): ?\DateTimeInterface
     {
-        return $this->date_debut;
+        return $this->date_start;
     }
 
-    public function setDateDebut(?\DateTimeInterface $date_debut): self
+    public function setDateStart(?\DateTimeInterface $date_start): self
     {
-        $this->date_debut = $date_debut;
+        $this->date_start = $date_start;
 
         return $this;
     }
 
-    public function getDateFin(): ?\DateTimeInterface
+    public function getDateEnd(): ?\DateTimeInterface
     {
-        return $this->date_fin;
+        return $this->date_end;
     }
 
-    public function setDateFin(?\DateTimeInterface $date_fin): self
+    public function setDateEnd(?\DateTimeInterface $date_end): self
     {
-        $this->date_fin = $date_fin;
+        $this->date_end = $date_end;
 
         return $this;
     }
 
-    public function getPrix(): ?float
+    public function getPrice(): ?float
     {
-        return $this->prix;
+        return $this->price;
     }
 
-    public function setPrix(?float $prix): self
+    public function setPrice(?float $price): self
     {
-        $this->prix = $prix;
+        $this->price = $price;
 
         return $this;
     }
@@ -194,19 +194,19 @@ class Reservation
         return $this;
     }
 
-    public function getFacture(): ?Facture
+    public function getBill(): ?Bill
     {
-        return $this->facture;
+        return $this->bill;
     }
 
-    public function setFacture(?Facture $facture): self
+    public function setBill(?Bill $bill): self
     {
-        $this->facture = $facture;
+        $this->bill = $bill;
 
         // set (or unset) the owning side of the relation if necessary
-        $newReservation = $facture === null ? null : $this;
-        if ($newReservation !== $facture->getReservation()) {
-            $facture->setReservation($newReservation);
+        $newReservation = $bill === null ? null : $this;
+        if ($newReservation !== $bill->getReservation()) {
+            $bill->setReservation($newReservation);
         }
 
         return $this;

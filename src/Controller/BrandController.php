@@ -1,0 +1,35 @@
+<?php
+
+
+namespace App\Controller;
+
+use App\Entity\Brand;
+use App\Form\BrandType;
+use App\Manager\BrandManager;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+
+class BrandController extends Controller
+{
+    /**
+     * @Route("/admin/add/brand", name="add_brand")
+     */
+    public function addBrand(Request $request, BrandManager $brandManager)
+    {
+        $brand = new Brand();
+
+        $form = $this->createForm(BrandType::class, $brand);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $brandManager->createBrand($brand);
+
+        }
+
+        return $this->render('admin/add/add-brand.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+}

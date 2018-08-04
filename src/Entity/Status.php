@@ -21,12 +21,12 @@ class Status
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $nom;
+    private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Vehicule", mappedBy="status")
+     * @ORM\OneToMany(targetEntity="App\Entity\Vehicle", mappedBy="status")
      */
-    private $vehicule;
+    private $vehicle;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Reservation", inversedBy="status")
@@ -35,7 +35,7 @@ class Status
 
     public function __construct()
     {
-        $this->vehicule = new ArrayCollection();
+        $this->vehicle = new ArrayCollection();
     }
 
     public function getId()
@@ -43,43 +43,43 @@ class Status
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(?string $nom): self
+    public function setName(?string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * @return Collection|Vehicule[]
+     * @return Collection|Vehicle[]
      */
-    public function getVehicule(): Collection
+    public function getVehicle(): Collection
     {
-        return $this->vehicule;
+        return $this->vehicle;
     }
 
-    public function addVehicule(Vehicule $vehicule): self
+    public function addVehicle(Vehicle $vehicle): self
     {
-        if (!$this->vehicule->contains($vehicule)) {
-            $this->vehicule[] = $vehicule;
-            $vehicule->setStatus($this);
+        if (!$this->vehicle->contains($vehicle)) {
+            $this->vehicle[] = $vehicle;
+            $vehicle->setStatus($this);
         }
 
         return $this;
     }
 
-    public function removeVehicule(Vehicule $vehicule): self
+    public function removeVehicle(Vehicle $vehicle): self
     {
-        if ($this->vehicule->contains($vehicule)) {
-            $this->vehicule->removeElement($vehicule);
+        if ($this->vehicle->contains($vehicle)) {
+            $this->vehicle->removeElement($vehicle);
             // set the owning side to null (unless already changed)
-            if ($vehicule->getStatus() === $this) {
-                $vehicule->setStatus(null);
+            if ($vehicle->getStatus() === $this) {
+                $vehicle->setStatus(null);
             }
         }
 

@@ -3,10 +3,10 @@
 
 namespace App\Controller;
 
-use App\Manager\VehiculeManager;
+use App\Manager\VehicleManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Manager\UserManager;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -29,24 +29,24 @@ class AdminController extends Controller
     public function listUsers(UserManager $usersManager)
     {
         $users = $usersManager->getUsers();
-        return $this->render('admin/list-users.html.twig', ['users' => $users]);
+        return $this->render('admin/list/list-users.html.twig', ['users' => $users]);
     }
 
     /**
-     * @Route("/admin/vehicules", name="list_vehicules")
+     * @Route("/admin/vehicles", name="list_vehicles")
      */
-    public function listVehicules(VehiculeManager $vehiculesManager)
+    public function listVehicles(VehicleManager $vehiclesManager)
     {
-        $vehicule = $vehiculesManager->getVehicules();
-        return $this->render('admin/list-vehicules.html.twig', ['vehicules' => $vehicule]);
+        $vehicle = $vehiclesManager->getVehicles();
+        return $this->render('admin/list/list-vehicles.html.twig', ['vehicles' => $vehicle]);
     }
 
     /**
-     * @Route("/admin/delete/{id}", name="delete_vehicule")
+     * @Route("/admin/delete/{id}", name="delete_vehicle")
      */
-    public function deleteVehicule(VehiculeManager $vehiculesManager, $id)
+    public function deleteVehicle(VehicleManager $vehiclesManager, $id)
     {
-        $vehiculesManager->deleteVehicule($id);
+        $vehiclesManager->deleteVehicle($id);
         return $this->redirectToRoute("dashboard");
     }
 }
