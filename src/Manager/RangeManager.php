@@ -21,9 +21,7 @@ class RangeManager
     {
 
         $range
-            ->setName($range->getName())
-            ->setHourrate($range->getHourrate())
-            ->setKilometerrate($range->getKilometerrate());
+            ->setName($range->getName());
 
         $this->em->persist($range);
         $this->em->flush();

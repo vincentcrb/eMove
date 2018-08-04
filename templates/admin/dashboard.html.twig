@@ -1,3 +1,14 @@
+{% extends "default/layout.html.twig" %}
+
+{% block content %}
+
+    <a class="nav-link nav-btn" href="{{ path('add_brand') }}">Ajout Marque</a>
+    <a class="nav-link nav-btn" href="{{ path('add_range') }}">Ajout Gamme</a>
+    <a class="nav-link nav-btn" href="{{ path('add_model') }}">Ajout Modèle</a>
+    <a class="nav-link nav-btn" href="{{ path('add_vehicle') }}">Ajout véhicule</a>
+
 {{ render(controller(
     'App\\Controller\\AdminController::listVehicles'
 )) }}
+
+{% endblock %}

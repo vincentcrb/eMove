@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Controller;
-
 
 use App\Entity\Range;
 use App\Form\RangeType;

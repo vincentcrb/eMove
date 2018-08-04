@@ -15,8 +15,6 @@ class RangeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('hour_rate', TextType::class)
-            ->add('kilometer_rate', TextType::class)
             ->add('save', SubmitType::class)
         ;
     }

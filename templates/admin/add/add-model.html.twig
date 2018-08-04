@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
-</head>
-<body>
-{% block body %}{% endblock %}
+{% extends "default/layout.html.twig" %}
+
+{% block content %}
 
 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 {{ form_widget(form) }}
 {{ form_end(form) }}
 
-{% block javascripts %}{% endblock %}
-</body>
-</html>
+{% endblock %}
