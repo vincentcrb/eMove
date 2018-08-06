@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\Gamme;
+use App\Entity\Classification;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Gamme|null find($id, $lockMode = null, $lockVersion = null)
- * @method Gamme|null findOneBy(array $criteria, array $orderBy = null)
- * @method Gamme[]    findAll()
- * @method Gamme[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Classification|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Classification|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Classification[]    findAll()
+ * @method Classification[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class GammeRepository extends ServiceEntityRepository
+class ClassificationRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Gamme::class);
+        parent::__construct($registry, Classification::class);
     }
 
 //    /**

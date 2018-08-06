@@ -4,10 +4,10 @@
 namespace App\Manager;
 
 
-use App\Entity\Gamme;
+use App\Entity\Classification;
 use Doctrine\ORM\EntityManagerInterface;
 
-class GammeManager
+class ClassificationManager
 {
     /** @var EntityManagerInterface */
     private $em;
@@ -17,13 +17,13 @@ class GammeManager
         $this->em = $entityManager;
     }
 
-    public function createGamme(Gamme $range)
+    public function createClassification(Classification $classification)
     {
 
-        $range
-            ->setName($range->getName());
+        $classification
+            ->setName($classification->getName());
 
-        $this->em->persist($range);
+        $this->em->persist($classification);
         $this->em->flush();
     }
 }
