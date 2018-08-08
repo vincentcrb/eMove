@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Manager\BrandManager;
 use App\Manager\VehicleManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Manager\UserManager;
@@ -48,5 +49,14 @@ class AdminController extends Controller
     {
         $vehiclesManager->deleteVehicle($id);
         return $this->redirectToRoute("dashboard");
+    }
+
+    /**
+     * @Route("/admin/brand", name="list_brands")
+     */
+    public function listBrand(BrandManager $brandManager)
+    {
+        $brand = $brandManager->getBrand();
+        return $this->render('admin/list/list-brand.html.twig', ['brands' => $brand]);
     }
 }

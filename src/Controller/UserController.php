@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Manager\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -27,6 +28,19 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid())
         {
             $user = $form->getData();
+
+            /** @var UploadedFile $file */
+            $file = $user->getImage();
+
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+
+            // moves the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('images_user_directory'),
+                $fileName
+            );
+
+            $user->setImage($fileName);
 
             $userManager->createUser($user);
 
@@ -57,5 +71,13 @@ class UserController extends Controller
     public function logout()
     {
 
+    }
+
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
     }
 }

@@ -1,0 +1,17 @@
+{% extends "default/layout.html.twig" %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Listes de marque</h1>
+        <div class="row">
+            {% for brand in brands %}
+                <div class="col-3 img-container">
+                        <div class="col-12 img" style="width:200px;height:200px;background-image:url('{{ asset('uploads/images/' ~ brand.image) }}')">
+                        </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -7,6 +7,7 @@ use App\Entity\Model;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -32,6 +33,7 @@ class VehicleType extends AbstractType
             ->add('kilometers', NumberType::class)
             ->add('purchase_date', DateType::class)
             ->add('price', MoneyType::class)
+            ->add('image', FileType::class, array('label' => 'Image JPG, PNG'))
             ->add('save', SubmitType::class)
         ;
     }

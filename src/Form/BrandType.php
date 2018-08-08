@@ -4,6 +4,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,6 +16,7 @@ class BrandType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('image', FileType::class, array('label' => 'Image JPG, PNG'))
             ->add('save', SubmitType::class)
         ;
     }

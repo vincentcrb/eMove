@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BrandRepository")
@@ -32,6 +34,14 @@ class Brand
      * @ORM\OneToMany(targetEntity="App\Entity\Model", mappedBy="model")
      */
     private $models;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $image;
 
     public function __construct()
     {
@@ -85,6 +95,30 @@ class Brand
         }
 
         return $this;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Brand
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**

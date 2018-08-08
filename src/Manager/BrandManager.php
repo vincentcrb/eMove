@@ -25,4 +25,10 @@ class BrandManager
         $this->em->persist($brand);
         $this->em->flush();
     }
+
+    public function getBrand()
+    {
+        return $this->em->getRepository(Brand:: class)
+            ->findAll();
+    }
 }
