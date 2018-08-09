@@ -82,27 +82,28 @@ class Pricing
         return $this;
     }
 
-    public function getHourprice(): ?float
+    public function getHourPrice(): ?float
     {
         return $this->hour_price;
     }
 
-    public function setHourprice(?float $hour_price): self
+    public function setHourPrice(?float $hour_price): self
     {
         $this->hour_price = $hour_price;
 
         return $this;
     }
 
-    public function getKilometerprice(): ?float
+    public function getKilometerPrice(): ?float
     {
         return $this->kilometer_price;
     }
 
-    public function setKilometerprice(?float $kilometer_price): self
+    public function setKilometerPrice(?float $kilometer_price): self
     {
         $this->kilometer_price = $kilometer_price;
 
         return $this;
     }
+
 }

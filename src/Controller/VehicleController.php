@@ -48,6 +48,15 @@ class VehicleController extends Controller
     }
 
     /**
+     * @Route("/vehicles", name="list_vehicles")
+     */
+    public function listVehicles(VehicleManager $vehiclesManager)
+    {
+        $vehicle = $vehiclesManager->getVehicles();
+        return $this->render('vehicle/list-vehicles.html.twig', ['vehicles' => $vehicle]);
+    }
+
+    /**
      * @return string
      */
     private function generateUniqueFileName()

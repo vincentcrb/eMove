@@ -65,30 +65,6 @@ class Model
         return $this;
     }
 
-    public function getHourrate(): ?float
-    {
-        return $this->hour_rate;
-    }
-
-    public function setHourrate(?float $hour_rate): self
-    {
-        $this->hour_rate = $hour_rate;
-
-        return $this;
-    }
-
-    public function getKilometerrate(): ?float
-    {
-        return $this->kilometer_rate;
-    }
-
-    public function setKilometerrate(?float $kilometer_rate): self
-    {
-        $this->kilometer_rate = $kilometer_rate;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Vehicle[]
      */
@@ -132,4 +108,27 @@ class Model
         return $this;
     }
 
+    public function getHourRate(): ?float
+    {
+        return $this->hour_rate;
+    }
+
+    public function setHourRate(?float $hour_rate): self
+    {
+        $this->hour_rate = $hour_rate;
+
+        return $this;
+    }
+
+    public function getKilometerRate(): ?float
+    {
+        return $this->kilometer_rate;
+    }
+
+    public function setKilometerRate(?float $kilometer_rate): self
+    {
+        $this->kilometer_rate = $kilometer_rate;
+
+        return $this;
+    }
 }

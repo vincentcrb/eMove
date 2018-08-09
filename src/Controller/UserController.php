@@ -29,19 +29,6 @@ class UserController extends Controller
         {
             $user = $form->getData();
 
-            /** @var UploadedFile $file */
-            $file = $user->getImage();
-
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-
-            // moves the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('images_user_directory'),
-                $fileName
-            );
-
-            $user->setImage($fileName);
-
             $userManager->createUser($user);
 
             return $this->redirectToRoute('sign_up');

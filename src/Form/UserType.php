@@ -18,7 +18,6 @@ class UserType extends AbstractType
         $builder
             ->add('username', TextType::class)
             ->add('password', PasswordType::class)
-            ->add('image', FileType::class, array('label' => 'Image JPG, PNG'))
             ->add('email', EmailType::class)
 
             ->add('save', SubmitType::class);

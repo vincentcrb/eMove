@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -62,12 +64,7 @@ class Vehicle
      * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="vehicle")
      */
     private $status;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Reservation", inversedBy="vehicle")
-     */
-    private $reservation;
-
+    
     /**
      * @ORM\Column(type="string")
      *
@@ -75,6 +72,16 @@ class Vehicle
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="vehicle")
+     */
+    private $reservations;
+
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -105,18 +112,6 @@ class Vehicle
         return $this;
     }
 
-    public function getSerialnumber(): ?string
-    {
-        return $this->serial_number;
-    }
-
-    public function setSerialnumber(?string $serial_number): self
-    {
-        $this->serial_number = $serial_number;
-
-        return $this;
-    }
-
     public function getColor(): ?string
     {
         return $this->color;
@@ -125,18 +120,6 @@ class Vehicle
     public function setColor(?string $color): self
     {
         $this->color = $color;
-
-        return $this;
-    }
-
-    public function getLicenseplate(): ?string
-    {
-        return $this->license_plate;
-    }
-
-    public function setLicenseplate(?string $license_plate): self
-    {
-        $this->license_plate = $license_plate;
 
         return $this;
     }
@@ -189,18 +172,6 @@ class Vehicle
         return $this;
     }
 
-    public function getReservation(): ?Reservation
-    {
-        return $this->reservation;
-    }
-
-    public function setReservation(?Reservation $reservation): self
-    {
-        $this->reservation = $reservation;
-
-        return $this;
-    }
-
     /**
      * Set image
      *
@@ -223,5 +194,60 @@ class Vehicle
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function getSerialNumber(): ?string
+    {
+        return $this->serial_number;
+    }
+
+    public function setSerialNumber(?string $serial_number): self
+    {
+        $this->serial_number = $serial_number;
+
+        return $this;
+    }
+
+    public function getLicensePlate(): ?string
+    {
+        return $this->license_plate;
+    }
+
+    public function setLicensePlate(?string $license_plate): self
+    {
+        $this->license_plate = $license_plate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setVehicle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->contains($reservation)) {
+            $this->reservations->removeElement($reservation);
+            // set the owning side to null (unless already changed)
+            if ($reservation->getVehicle() === $this) {
+                $reservation->setVehicle(null);
+            }
+        }
+
+        return $this;
     }
 }

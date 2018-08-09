@@ -16,7 +16,7 @@ class BrandController extends Controller
     /**
      * @Route("/admin/add/brand", name="add_brand")
      */
-    public function addBrand(Request $request, BrandManager $brandManager)
+        public function addBrand(Request $request, BrandManager $brandManager)
     {
         $brand = new Brand();
 

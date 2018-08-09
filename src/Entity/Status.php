@@ -29,13 +29,14 @@ class Status
     private $vehicle;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Reservation", inversedBy="status")
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="status")
      */
-    private $reservation;
+    private $reservations;
 
     public function __construct()
     {
         $this->vehicle = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId()
@@ -86,14 +87,33 @@ class Status
         return $this;
     }
 
-    public function getReservation(): ?Reservation
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
     {
-        return $this->reservation;
+        return $this->reservations;
     }
 
-    public function setReservation(?Reservation $reservation): self
+    public function addReservation(Reservation $reservation): self
     {
-        $this->reservation = $reservation;
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setStatus($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->contains($reservation)) {
+            $this->reservations->removeElement($reservation);
+            // set the owning side to null (unless already changed)
+            if ($reservation->getStatus() === $this) {
+                $reservation->setStatus(null);
+            }
+        }
 
         return $this;
     }

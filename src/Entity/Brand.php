@@ -38,7 +38,6 @@ class Brand
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $image;
@@ -146,6 +145,42 @@ class Brand
             // set the owning side to null (unless already changed)
             if ($brand->getBrand() === $this) {
                 $brand->setBrand(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function addVehicle(Vehicle $vehicle): self
+    {
+        if (!$this->vehicle->contains($vehicle)) {
+            $this->vehicle[] = $vehicle;
+            $vehicle->setBrand($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVehicle(Vehicle $vehicle): self
+    {
+        if ($this->vehicle->contains($vehicle)) {
+            $this->vehicle->removeElement($vehicle);
+            // set the owning side to null (unless already changed)
+            if ($vehicle->getBrand() === $this) {
+                $vehicle->setBrand(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function removeModel(Model $model): self
+    {
+        if ($this->models->contains($model)) {
+            $this->models->removeElement($model);
+            // set the owning side to null (unless already changed)
+            if ($model->getModel() === $this) {
+                $model->setModel(null);
             }
         }
 

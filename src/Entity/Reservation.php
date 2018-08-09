@@ -19,16 +19,6 @@ class Reservation
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="reservation")
-     */
-    private $user;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Vehicle", mappedBy="reservation")
-     */
-    private $vehicle;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $date_start;
@@ -44,87 +34,28 @@ class Reservation
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Status", mappedBy="reservation")
-     */
-    private $status;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\Bill", mappedBy="reservation", cascade={"persist", "remove"})
      */
     private $bill;
 
-    public function __construct()
-    {
-        $this->user = new ArrayCollection();
-        $this->vehicle = new ArrayCollection();
-        $this->status = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reservations")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Vehicle", inversedBy="reservations")
+     */
+    private $vehicle;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="reservations")
+     */
+    private $status;
 
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getUser(): Collection
-    {
-        return $this->user;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-            $user->setReservation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->user->contains($user)) {
-            $this->user->removeElement($user);
-            // set the owning side to null (unless already changed)
-            if ($user->getReservation() === $this) {
-                $user->setReservation(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Vehicle[]
-     */
-    public function getVehicle(): Collection
-    {
-        return $this->vehicle;
-    }
-
-    public function addVehicle(Vehicle $vehicle): self
-    {
-        if (!$this->vehicle->contains($vehicle)) {
-            $this->vehicle[] = $vehicle;
-            $vehicle->setReservation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVehicle(Vehicle $vehicle): self
-    {
-        if ($this->vehicle->contains($vehicle)) {
-            $this->vehicle->removeElement($vehicle);
-            // set the owning side to null (unless already changed)
-            if ($vehicle->getReservation() === $this) {
-                $vehicle->setReservation(null);
-            }
-        }
-
-        return $this;
     }
 
     public function getDateStart(): ?\DateTimeInterface
@@ -163,37 +94,6 @@ class Reservation
         return $this;
     }
 
-    /**
-     * @return Collection|Status[]
-     */
-    public function getStatus(): Collection
-    {
-        return $this->status;
-    }
-
-    public function addStatus(Status $status): self
-    {
-        if (!$this->status->contains($status)) {
-            $this->status[] = $status;
-            $status->setReservation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStatus(Status $status): self
-    {
-        if ($this->status->contains($status)) {
-            $this->status->removeElement($status);
-            // set the owning side to null (unless already changed)
-            if ($status->getReservation() === $this) {
-                $status->setReservation(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getBill(): ?Bill
     {
         return $this->bill;
@@ -208,6 +108,42 @@ class Reservation
         if ($newReservation !== $bill->getReservation()) {
             $bill->setReservation($newReservation);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getVehicle(): ?Vehicle
+    {
+        return $this->vehicle;
+    }
+
+    public function setVehicle(?Vehicle $vehicle): self
+    {
+        $this->vehicle = $vehicle;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

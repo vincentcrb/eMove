@@ -34,7 +34,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/vehicles", name="list_vehicles")
+     * @Route("/admin/vehicles", name="admin_list_vehicles")
      */
     public function listVehicles(VehicleManager $vehiclesManager)
     {
