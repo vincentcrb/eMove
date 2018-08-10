@@ -11,6 +11,7 @@
 - Pricing (Tarif)
 - Status (Status)
 - Bill (Facture)
+- Type (Type véhicule)
 
 
 ## A propos
@@ -72,6 +73,13 @@ INSERT INTO `status` (`id`, `name`) VALUES
 (4, 'Rendu avec pénalité'),
 (5, 'Libre'),
 (6, 'Occupé');
+```
+
+### Type
+```
+INSERT INTO `type` (`id`, `name`) VALUES
+(1, 'Voiture'),
+(2, 'Scooter');
 ```
 
 ### Classification

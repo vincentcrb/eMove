@@ -9,7 +9,6 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Marque</th>
                     <th>Modele</th>
                     <th>Numéro série</th>
                     <th>Réserver</th>
@@ -17,10 +16,9 @@
                 </thead>
                 <tbody>
                 {% for vehicle in vehicles %}
-                    {% if vehicle.status != 0 %}
+                    {% if vehicle.status.id != 0 %}
                     <tr>
                         <td>{{ vehicle.id }}</td>
-                        <td>{{ vehicle.brand.name }}</td>
                         <td>{{ vehicle.model.name }}</td>
                         <td>{{ vehicle.serialnumber }}</td>
                         <td><a href="{{ path('add_reservation', {'idVehicle': vehicle.id}) }}">Reservation</a></td>
