@@ -17,22 +17,19 @@ class VehicleManager {
 
     public function createVehicle(Vehicle $vehicle)
     {
-
         $vehicle
-            ->setBrand($vehicle->getBrand())
             ->setModel($vehicle->getModel())
             ->setSerialnumber($vehicle->getSerialnumber())
             ->setColor($vehicle->getColor())
             ->setLicenseplate($vehicle->getLicenseplate())
-            ->setKilometers($vehicle->getKilometers())
-            ->setPurchaseDate($vehicle->getPurchaseDate())
-            ->setPrice($vehicle->getPrice());
+        ;
 
         $this->em->persist($vehicle);
         $this->em->flush();
     }
 
-    public function deleteVehicle($id){
+    public function deleteVehicle($id)
+    {
         $vehicle = $this->getVehicle($id);
 
         $this->em->remove($vehicle);

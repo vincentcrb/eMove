@@ -60,11 +60,4 @@ class UserController extends Controller
 
     }
 
-    /**
-     * @return string
-     */
-    private function generateUniqueFileName()
-    {
-        return md5(uniqid());
-    }
 }

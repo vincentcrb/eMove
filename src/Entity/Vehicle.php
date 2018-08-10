@@ -5,8 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VehicleRepository")
@@ -19,11 +17,6 @@ class Vehicle
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Brand", inversedBy="model")
-     */
-    private $brand;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Model", inversedBy="vehicles")
@@ -46,32 +39,9 @@ class Vehicle
     private $license_plate;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $kilometers;
-
-    /**
-     * @ORM\Column(type="date", nullable=true)
-     */
-    private $purchase_date;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $price;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="vehicle")
      */
     private $status;
-    
-    /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
-     */
-    private $image;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="vehicle")
@@ -86,18 +56,6 @@ class Vehicle
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getBrand(): ?Brand
-    {
-        return $this->brand;
-    }
-
-    public function setBrand(?Brand $brand): self
-    {
-        $this->brand = $brand;
-
-        return $this;
     }
 
     public function getModel(): ?Model
@@ -124,42 +82,6 @@ class Vehicle
         return $this;
     }
 
-    public function getKilometers(): ?float
-    {
-        return $this->kilometers;
-    }
-
-    public function setKilometers(?float $kilometers): self
-    {
-        $this->kilometers = $kilometers;
-
-        return $this;
-    }
-
-    public function getPurchaseDate(): ?\DateTimeInterface
-    {
-        return $this->purchase_date;
-    }
-
-    public function setPurchaseDate(?\DateTimeInterface $purchase_date): self
-    {
-        $this->purchase_date = $purchase_date;
-
-        return $this;
-    }
-
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    public function setPrice(?float $price): self
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
     public function getStatus(): ?Status
     {
         return $this->status;
@@ -170,30 +92,6 @@ class Vehicle
         $this->status = $status;
 
         return $this;
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     *
-     * @return Vehicle
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 
     public function getSerialNumber(): ?string

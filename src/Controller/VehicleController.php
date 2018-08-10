@@ -6,7 +6,6 @@ namespace App\Controller;
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
 use App\Manager\VehicleManager;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,19 +24,6 @@ class VehicleController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            /** @var UploadedFile $file */
-            $file = $vehicle->getImage();
-
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-
-            // moves the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('images_vehicle_directory'),
-                $fileName
-            );
-
-            $vehicle->setImage($fileName);
-
             $vehicleManager->createVehicle($vehicle);
 
         }
@@ -54,13 +40,5 @@ class VehicleController extends Controller
     {
         $vehicle = $vehiclesManager->getVehicles();
         return $this->render('vehicle/list-vehicles.html.twig', ['vehicles' => $vehicle]);
-    }
-
-    /**
-     * @return string
-     */
-    private function generateUniqueFileName()
-    {
-        return md5(uniqid());
     }
 }

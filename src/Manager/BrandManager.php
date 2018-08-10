@@ -18,17 +18,35 @@ class BrandManager
 
     public function createBrand(Brand $brand)
     {
-
-        $brand
-            ->setName($brand->getName());
+        if(empty($brand->getImage())){
+            $brand
+                ->setName($brand->getName());
+        } else{
+            $brand
+                ->setName($brand->getName())
+                ->setImage($brand->getImage());
+        }
 
         $this->em->persist($brand);
         $this->em->flush();
     }
 
-    public function getBrand()
+    public function deleteBrand($id){
+        $vehicle = $this->getBrand($id);
+
+        $this->em->remove($vehicle);
+        $this->em->flush();
+    }
+
+    public function getBrands()
     {
         return $this->em->getRepository(Brand:: class)
             ->findAll();
+    }
+
+    public function getBrand($id)
+    {
+        return $this->em->getRepository(Brand:: class)
+            ->find($id);
     }
 }

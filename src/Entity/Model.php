@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ModelRepository")
@@ -42,6 +44,23 @@ class Model
      * @ORM\ManyToOne(targetEntity="App\Entity\Brand", inversedBy="models")
      */
     private $brand;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Type", inversedBy="models")
+     */
+    private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Classification", inversedBy="models")
+     */
+    private $classification;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $image;
 
     public function __construct()
     {
@@ -128,6 +147,54 @@ class Model
     public function setKilometerRate(?float $kilometer_rate): self
     {
         $this->kilometer_rate = $kilometer_rate;
+
+        return $this;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Model
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getClassification(): ?Classification
+    {
+        return $this->classification;
+    }
+
+    public function setClassification(?Classification $classification): self
+    {
+        $this->classification = $classification;
 
         return $this;
     }

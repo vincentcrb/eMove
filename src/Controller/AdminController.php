@@ -16,7 +16,7 @@ class AdminController extends Controller
     /**
      * @Route("/admin/dashboard", name="dashboard")
      */
-    public function indexAction(Request $request)
+    public function dashboard(Request $request)
     {
         // replace this example code with whatever you need
         return $this->render('admin/dashboard.html.twig', [
@@ -25,7 +25,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/users", name="list_users")
+     * @Route("/admin/users", name="admin_list_users")
      */
     public function listUsers(UserManager $usersManager)
     {
@@ -52,11 +52,20 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/brand", name="list_brands")
+     * @Route("/admin/brands", name="admin_list_brands")
      */
-    public function listBrand(BrandManager $brandManager)
+    public function listBrands(BrandManager $brandManager)
     {
-        $brand = $brandManager->getBrand();
+        $brand = $brandManager->getBrands();
         return $this->render('admin/list/list-brand.html.twig', ['brands' => $brand]);
+    }
+
+    /**
+     * @Route("/admin/delete/{id}", name="delete_brand")
+     */
+    public function deleteBrand(BrandManager $brandManager, $id)
+    {
+        $brandManager->deleteBrand($id);
+        return $this->redirectToRoute("dashboard");
     }
 }

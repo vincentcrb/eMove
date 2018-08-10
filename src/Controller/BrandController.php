@@ -25,18 +25,20 @@ class BrandController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            /** @var UploadedFile $file */
-            $file = $brand->getImage();
+            if(!empty($brand->getImage())){
+                /** @var UploadedFile $file */
+                $file = $brand->getImage();
 
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
-            // moves the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('images_brand_directory'),
-                $fileName
-            );
+                // moves the file to the directory where brochures are stored
+                $file->move(
+                    $this->getParameter('images_brand_directory'),
+                    $fileName
+                );
 
-            $brand->setImage($fileName);
+                $brand->setImage($fileName);
+            }
 
             $brandManager->createBrand($brand);
 

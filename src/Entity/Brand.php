@@ -26,17 +26,12 @@ class Brand
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Vehicle", mappedBy="brand")
-     */
-    private $vehicle;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Model", mappedBy="model")
      */
     private $models;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
@@ -44,11 +39,10 @@ class Brand
 
     public function __construct()
     {
-        $this->vehicle = new ArrayCollection();
         $this->models = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -61,37 +55,6 @@ class Brand
     public function setName(?string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Vehicle[]
-     */
-    public function getVehicle(): Collection
-    {
-        return $this->vehicle;
-    }
-
-    public function addVehicule(Vehicle $vehicule): self
-    {
-        if (!$this->vehicle->contains($vehicule)) {
-            $this->vehicle[] = $vehicule;
-            $vehicule->setBrand($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVehicule(Vehicle $vehicule): self
-    {
-        if ($this->vehicle->contains($vehicule)) {
-            $this->vehicle->removeElement($vehicule);
-            // set the owning side to null (unless already changed)
-            if ($vehicule->getBrand() === $this) {
-                $vehicule->setBrand(null);
-            }
-        }
 
         return $this;
     }
@@ -128,47 +91,11 @@ class Brand
         return $this->models;
     }
 
-    public function addModel(Model $brand): self
+    public function addModel(Model $model): self
     {
-        if (!$this->models->contains($brand)) {
-            $this->models[] = $brand;
-            $brand->setBrand($this);
-        }
-
-        return $this;
-    }
-
-    public function removeModele(Model $brand): self
-    {
-        if ($this->models->contains($brand)) {
-            $this->models->removeElement($brand);
-            // set the owning side to null (unless already changed)
-            if ($brand->getBrand() === $this) {
-                $brand->setBrand(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function addVehicle(Vehicle $vehicle): self
-    {
-        if (!$this->vehicle->contains($vehicle)) {
-            $this->vehicle[] = $vehicle;
-            $vehicle->setBrand($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVehicle(Vehicle $vehicle): self
-    {
-        if ($this->vehicle->contains($vehicle)) {
-            $this->vehicle->removeElement($vehicle);
-            // set the owning side to null (unless already changed)
-            if ($vehicle->getBrand() === $this) {
-                $vehicle->setBrand(null);
-            }
+        if (!$this->models->contains($model)) {
+            $this->models[] = $model;
+            $model->setModel($this);
         }
 
         return $this;
@@ -186,4 +113,5 @@ class Brand
 
         return $this;
     }
+
 }

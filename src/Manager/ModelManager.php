@@ -19,12 +19,20 @@ class ModelManager
 
     public function createModel(Model $model)
     {
-
-        $model
-            ->setBrand($model->getBrand())
-            ->setName($model->getName())
-            ->setHourrate($model->getHourrate())
-            ->setKilometerrate($model->getKilometerrate());
+        if(empty($model->getImage())) {
+            $model
+                ->setBrand($model->getBrand())
+                ->setName($model->getName())
+                ->setHourrate($model->getHourrate())
+                ->setKilometerrate($model->getKilometerrate());
+        } else{
+            $model
+                ->setBrand($model->getBrand())
+                ->setName($model->getName())
+                ->setHourrate($model->getHourrate())
+                ->setKilometerrate($model->getKilometerrate())
+                ->setImage($model->getImage());
+        }
 
         $this->em->persist($model);
         $this->em->flush();

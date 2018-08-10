@@ -5,8 +5,11 @@ namespace App\Form;
 
 
 use App\Entity\Brand;
+use App\Entity\Classification;
+use App\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +23,16 @@ class ModelType extends AbstractType
                 'class' => Brand:: class,
                 'choice_label' => 'name'
             ])
+            ->add('classification', EntityType::class, [
+                'class' => Classification:: class,
+                'choice_label' => 'name'
+            ])
+            ->add('type', EntityType::class, [
+                'class' => Type:: class,
+                'choice_label' => 'name'
+            ])
             ->add('name', TextType::class)
+            ->add('image', FileType::class, array('label' => 'Image JPG, PNG'))
             ->add('hour_rate', TextType::class)
             ->add('kilometer_rate', TextType::class)
             ->add('save', SubmitType::class)

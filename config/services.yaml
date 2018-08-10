@@ -6,7 +6,7 @@
 parameters:
     locale: 'en'
     images_user_directory: '%kernel.project_dir%/public/uploads/images/user'
-    images_vehicle_directory: '%kernel.project_dir%/public/uploads/images/vehicle'
+    images_model_directory: '%kernel.project_dir%/public/uploads/images/model'
     images_brand_directory: '%kernel.project_dir%/public/uploads/images/brand'
 
 services:

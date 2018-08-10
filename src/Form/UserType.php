@@ -19,7 +19,6 @@ class UserType extends AbstractType
             ->add('username', TextType::class)
             ->add('password', PasswordType::class)
             ->add('email', EmailType::class)
-
             ->add('save', SubmitType::class);
 
     }

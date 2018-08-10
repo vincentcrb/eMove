@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ClassificationRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TypeRepository")
  */
-class Classification
+class Type
 {
     /**
      * @ORM\Id()
@@ -24,12 +24,18 @@ class Classification
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Model", mappedBy="classification")
+     * @ORM\OneToMany(targetEntity="App\Entity\Vehicle", mappedBy="type")
+     */
+    private $vehicles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Model", mappedBy="type")
      */
     private $models;
 
     public function __construct()
     {
+        $this->vehicles = new ArrayCollection();
         $this->models = new ArrayCollection();
     }
 
@@ -62,7 +68,7 @@ class Classification
     {
         if (!$this->models->contains($model)) {
             $this->models[] = $model;
-            $model->setClassification($this);
+            $model->setType($this);
         }
 
         return $this;
@@ -73,8 +79,39 @@ class Classification
         if ($this->models->contains($model)) {
             $this->models->removeElement($model);
             // set the owning side to null (unless already changed)
-            if ($model->getClassification() === $this) {
-                $model->setClassification(null);
+            if ($model->getType() === $this) {
+                $model->setType(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vehicle[]
+     */
+    public function getVehicles(): Collection
+    {
+        return $this->vehicles;
+    }
+
+    public function addVehicle(Vehicle $vehicle): self
+    {
+        if (!$this->vehicles->contains($vehicle)) {
+            $this->vehicles[] = $vehicle;
+            $vehicle->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVehicle(Vehicle $vehicle): self
+    {
+        if ($this->vehicles->contains($vehicle)) {
+            $this->vehicles->removeElement($vehicle);
+            // set the owning side to null (unless already changed)
+            if ($vehicle->getType() === $this) {
+                $vehicle->setType(null);
             }
         }
 
