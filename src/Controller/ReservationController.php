@@ -36,4 +36,18 @@ class ReservationController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * @Route("/reservation", name="my_reservation")
+     */
+    public function userReservation(Request $request, ReservationManager $brandManager)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+
+        $reservation = $brandManager->myReservation($user);
+
+        return $this->render('user/list/list-reservation.html.twig', ['reservations' => $reservation]);
+
+    }
 }

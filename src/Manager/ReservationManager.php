@@ -6,6 +6,7 @@ namespace App\Manager;
 
 use App\Entity\Reservation;
 use App\Entity\Status;
+use App\Entity\User;
 use App\Entity\Vehicle;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -39,5 +40,10 @@ class ReservationManager
 
         $this->em->persist($reservation);
         $this->em->flush();
+    }
+
+    public function myReservation(User $user)
+    {
+        return $user->getReservations();
     }
 }
