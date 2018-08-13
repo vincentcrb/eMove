@@ -22,11 +22,17 @@ class ReservationManager
 
     public function createReservation(Reservation $reservation, $idUser, $vehicle)
     {
-        /** @var Vehicle $vehicle */
+        /** @var Vehicle $idVehicle */
         $idVehicle = $this->em->getRepository(Vehicle:: class)
             ->find($vehicle);
 
-        /** @var Vehicle $vehicle */
+        /** @var Status $statusVehicle */
+        $statusVehicle = $this->em->getRepository(Status:: class)
+            ->find(6);
+
+        $statusVehicle = $idVehicle->setStatus($statusVehicle);
+
+        /** @var Status $status */
         $status = $this->em->getRepository(Status:: class)
             ->find(1);
 
@@ -40,10 +46,19 @@ class ReservationManager
 
         $this->em->persist($reservation);
         $this->em->flush();
+
+        $this->em->persist($statusVehicle);
+        $this->em->flush();
     }
 
     public function myReservation(User $user)
     {
         return $user->getReservations();
+    }
+
+    public function getReservations()
+    {
+        return $this->em->getRepository(Reservation:: class)
+            ->findAll();
     }
 }
