@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Vehicle;
 use App\Form\VehicleType;
+use App\Manager\ReservationManager;
 use App\Manager\VehicleManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,9 +37,14 @@ class VehicleController extends Controller
     /**
      * @Route("/vehicles", name="list_vehicles")
      */
-    public function listVehicles(VehicleManager $vehiclesManager)
+    public function listVehicles(VehicleManager $vehiclesManager, ReservationManager $reservationManager)
     {
         $vehicle = $vehiclesManager->getVehicles();
-        return $this->render('vehicle/list-vehicles.html.twig', ['vehicles' => $vehicle]);
+        $reservation = $reservationManager->getReservations();
+
+        return $this->render('vehicle/list-vehicles.html.twig', [
+            'vehicles' => $vehicle,
+            'reservations' => $reservation
+        ]);
     }
 }

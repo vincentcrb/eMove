@@ -16,7 +16,7 @@
                 </thead>
                 <tbody>
                 {% for vehicle in vehicles %}
-                    {% if vehicle.status.id != 0 %}
+                    {% if vehicle.status.id != 6 %}
                     <tr>
                         <td>{{ vehicle.id }}</td>
                         <td>{{ vehicle.model.name }}</td>
