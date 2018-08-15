@@ -11,14 +11,26 @@ Encore
     // .enableVersioning(Encore.isProduction())
 
     // uncomment to define the assets of the project
-    // .addEntry('js/app', './assets/js/app.js')
-    // .addStyleEntry('css/app', './assets/css/app.scss')
+    // JS
+    // .addEntry('js/core/bootstrap', './assets/js/core/bootstrap.min.js')
+    // .addEntry('js/core/jquery', './assets/js/core/jquery.3.2.1.min.js')
+    // .addEntry('js/core/popper', './assets/js/core/popper.min.js')
+    // .addEntry('js/plugins/bootstrap-datetimepicker', './assets/js/plugins/bootstrap-datetimepicker.min.js')
+    // .addEntry('js/plugins/bootstrap-selectpicker', './assets/js/plugins/bootstrap-selectpicker.js')
+    // .addEntry('js/plugins/bootstrap-switch', './assets/js/plugins/bootstrap-switch.js')
+    // .addEntry('js/plugins/bootstrap-tagsinput', './assets/js/plugins/bootstrap-tagsinput.js')
+    // .addEntry('js/plugins/jasny-bootstrap', './assets/js/plugins/jasny-bootstrap.min.js')
+    // .addEntry('js/plugins/moment', './assets/js/plugins/moment.min.js')
+    // .addEntry('js/emove', './assets/js/emove.js')
+    // CSS
+    .addStyleEntry('css/app', './assets/scss/app.scss')
 
     // uncomment if you use Sass/SCSS files
-    // .enableSassLoader()
+    .enableSassLoader()
 
     // uncomment for legacy applications that require $/jQuery as a global variable
     // .autoProvidejQuery()
 ;
+
 
 module.exports = Encore.getWebpackConfig();

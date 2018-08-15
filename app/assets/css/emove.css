@@ -1,0 +1,11 @@
+/*------------- #VARIABLES --------------*/
+/*------------- #BLOCKS --------------*/
+.material-icons.md-light {
+  color: #fff; }
+
+::-moz-selection {
+  /* Code for Firefox */
+  background: #F33; }
+
+::selection {
+  background: #F33; }
