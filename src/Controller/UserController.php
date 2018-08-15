@@ -11,25 +11,27 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends Controller
 {
     /**
      * @Route("/sign-up", name="sign_up")
      */
-    public function registerUser(Request $request, UserManager $userManager)
+    public function registerUser(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = new User();
-
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $user = $form->getData();
+            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
 
-            $userManager->createUser($user);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
 
             return $this->redirectToRoute('sign_up');
         }

@@ -1,12 +1,47 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport"
+    {# <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> #}
     <title>{% if page_title is defined %} {{ page_title }} | {% endif %} eMove</title>
+
+	<!-- Required meta tags always come first -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('build/assets/Bootstrap/dist/css/bootstrap-reboot.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('build/assets/Bootstrap/dist/css/bootstrap.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('build/assets/Bootstrap/dist/css/bootstrap-grid.css') }}">
+
+	<!-- Theme Styles CSS -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('build/assets/css/theme-styles.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('build/assets/css/blocks.css') }}">
+
+    <!-- Main Font -->
+    <script src="{{ asset('build/assets/js/webfontloader.min.js') }}"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Roboto:300,400,500,700:latin']
+            }
+        });
+    </script>
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ asset('build/assets/css/fonts.css') }}">
+
+	<!-- Styles for plugins -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('build/assets/css/daterangepicker.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('build/assets/css/jquery.mCustomScrollbar.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('build/assets/css/bootstrap-select.css') }}">
+
+
 </head>
 
 <header>

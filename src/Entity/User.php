@@ -37,6 +37,12 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=60)
+     */
+    private $plainPassword;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
@@ -53,12 +59,12 @@ class User implements UserInterface
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthDate", type="date")
+     * @ORM\Column(name="birthDate", type="date", nullable=true)
      */
     private $birthDate;
 
     /**
-     * @ORM\Column(name="isAdmin", type="boolean" , nullable=true)
+     * @ORM\Column(name="isAdmin", type="boolean", nullable=true)
      */
     private $isAdmin;
 
@@ -118,6 +124,16 @@ class User implements UserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
     }
 
     /**

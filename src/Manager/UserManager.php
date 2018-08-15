@@ -15,11 +15,11 @@ class UserManager
 
     private $passwordEncoder;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
-    {
-        $this->em = $entityManager;
-        $this->passwordEncoder = $passwordEncoder;
-    }
+    // public function __construct(UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
+    // {
+    //     $this->em = $entityManager;
+    //     $this->passwordEncoder = $passwordEncoder;
+    // }
 
     public function createUser(User $user)
     {

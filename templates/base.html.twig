@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if page_title is defined %} {{ page_title }} | {% endif %} eMove</title>
+    {% include 'default/head.html.twig' %}
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+    {# {% if is_granted('ROLE_USER') %} #}
+        {% include 'default/navbar.html.twig' %}
+    {# {% endif %} #}
+
+
+    {% block container %}
+
+        <div class="wrapper">
+            {% block wrapper %}
+            {% endblock %}
+        </div>
+
+        {% include 'default/scripts.html.twig' %}
+        {% block javascripts %}{% endblock %}
+
+        {# {% if is_granted('ROLE_USER') %} #}
+            {% include 'default/footer.html.twig' %}
+        {# {% endif %} #}
+
+    {% endblock %}
+
+</body>
+<html>
