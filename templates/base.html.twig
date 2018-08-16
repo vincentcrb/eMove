@@ -19,14 +19,14 @@
             {% endblock %}
         </div>
 
-        {% include 'default/scripts.html.twig' %}
-        {% block javascripts %}{% endblock %}
-
         {# {% if is_granted('ROLE_USER') %} #}
             {% include 'default/footer.html.twig' %}
         {# {% endif %} #}
 
     {% endblock %}
+
+    {% include 'default/scripts.html.twig' %}
+    {% block javascripts %}{% endblock %}
 
 </body>
 <html>
