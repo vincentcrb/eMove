@@ -24,6 +24,11 @@ class Type
     private $name;
 
     /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $rate;
+    
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Vehicle", mappedBy="type")
      */
     private $vehicles;
@@ -43,6 +48,12 @@ class Type
     {
         return $this->id;
     }
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     public function getName(): ?string
     {
@@ -52,6 +63,26 @@ class Type
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+    
+    /**
+     * Get the value of rate
+     */ 
+    public function getRate()
+    {
+        return $this->rate;
+    }
+
+    /**
+     * Set the value of rate
+     *
+     * @return  self
+     */ 
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
 
         return $this;
     }

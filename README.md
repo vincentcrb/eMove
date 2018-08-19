@@ -79,7 +79,7 @@ INSERT INTO `status` (`id`, `name`) VALUES
 ```
 INSERT INTO `type` (`id`, `name`) VALUES
 (1, 'Voiture'),
-(2, 'Scooter');
+(2, 'Moto');
 ```
 
 ### Classification

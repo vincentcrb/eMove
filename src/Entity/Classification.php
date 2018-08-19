@@ -24,6 +24,11 @@ class Classification
     private $name;
 
     /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $rate;    
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Model", mappedBy="classification")
      */
     private $models;
@@ -37,6 +42,12 @@ class Classification
     {
         return $this->id;
     }
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     public function getName(): ?string
     {
@@ -46,6 +57,26 @@ class Classification
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of rate
+     */ 
+    public function getRate()
+    {
+        return $this->rate;
+    }
+
+    /**
+     * Set the value of rate
+     *
+     * @return  self
+     */ 
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
 
         return $this;
     }

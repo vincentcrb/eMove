@@ -19,12 +19,12 @@ class Reservation
     private $id;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_start;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_end;
 
@@ -58,24 +58,24 @@ class Reservation
         return $this->id;
     }
 
-    public function getDateStart(): ?\DateTimeInterface
+    public function getDateStart(): ?\DateInterface
     {
         return $this->date_start;
     }
 
-    public function setDateStart(?\DateTimeInterface $date_start): self
+    public function setDateStart(?\DateInterface $date_start): self
     {
         $this->date_start = $date_start;
 
         return $this;
     }
 
-    public function getDateEnd(): ?\DateTimeInterface
+    public function getDateEnd(): ?\DateInterface
     {
         return $this->date_end;
     }
 
-    public function setDateEnd(?\DateTimeInterface $date_end): self
+    public function setDateEnd(?\DateInterface $date_end): self
     {
         $this->date_end = $date_end;
 

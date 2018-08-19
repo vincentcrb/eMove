@@ -25,17 +25,23 @@ class Brand
      */
     private $name;
 
+    
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $rate;
+    
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Model", mappedBy="model")
      */
     private $models;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     *
-     * @Assert\File(mimeTypes={ "image/jpeg" })
-     */
-    private $image;
+    // /**
+    //  * @ORM\Column(type="string", nullable=true)
+    //  *
+    //  * @Assert\File(mimeTypes={ "image/jpeg" })
+    //  */
+    // private $image;
 
     public function __construct()
     {
@@ -45,6 +51,11 @@ class Brand
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getName(): ?string
@@ -60,28 +71,46 @@ class Brand
     }
 
     /**
-     * Set image
-     *
-     * @param string $image
-     *
-     * @return Brand
-     */
-    public function setImage($image)
+     * Get the value of rate
+     */ 
+    public function getRate()
     {
-        $this->image = $image;
+        return $this->rate;
+    }
+
+    /**
+     * Set the value of rate
+     *
+     * @return  self
+     */ 
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
 
         return $this;
     }
 
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
+    // /**
+    //  * Set image
+    //  *
+    //  * @param string $image
+    //  *
+    //  * @return Brand
+    //  */
+    // public function setImage($image)
+    // {
+    //     $this->image = $image;
+    //     return $this;
+    // }
+    // /**
+    //  * Get image
+    //  *
+    //  * @return string
+    //  */
+    // public function getImage()
+    // {
+    //     return $this->image;
+    // }
 
     /**
      * @return Collection|Model[]

@@ -26,14 +26,9 @@ class Model
     private $name;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $hour_rate;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $kilometer_rate;
+    private $starting_price;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Vehicle", mappedBy="model")
@@ -127,26 +122,14 @@ class Model
         return $this;
     }
 
-    public function getHourRate(): ?float
+    public function getStartingPrice()
     {
-        return $this->hour_rate;
+        return $this->starting_price;
     }
 
-    public function setHourRate(?float $hour_rate): self
+    public function setStartingPrice($starting_price)
     {
-        $this->hour_rate = $hour_rate;
-
-        return $this;
-    }
-
-    public function getKilometerRate(): ?float
-    {
-        return $this->kilometer_rate;
-    }
-
-    public function setKilometerRate(?float $kilometer_rate): self
-    {
-        $this->kilometer_rate = $kilometer_rate;
+        $this->starting_price = $starting_price;
 
         return $this;
     }
