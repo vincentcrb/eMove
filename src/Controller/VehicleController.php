@@ -42,9 +42,12 @@ class VehicleController extends Controller
         $vehicle = $vehiclesManager->getVehicles();
         $reservation = $reservationManager->getReservations();
 
+        // $price = getPrice();
+
         return $this->render('vehicle/list-vehicles.html.twig', [
             'vehicles' => $vehicle,
-            'reservations' => $reservation
+            'reservations' => $reservation,
+            // 'price' => $price
         ]);
     }
 }
