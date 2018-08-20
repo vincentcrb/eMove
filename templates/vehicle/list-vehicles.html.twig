@@ -12,6 +12,7 @@
     <div class="container">
         <div class="row">
             {% for vehicle in vehicles %}
+
                 <div class="col-md-4">
                     <div class="card card-blog">
                         <div class="card-image">
@@ -20,26 +21,27 @@
                             </a>
                         </div>
                         <div class="card-body">
-                            <h6 class="category text-primary"><em>{{ vehicle.model.type.name }}</em> - <strong>{{ vehicle.model.classification.name }}</strong></h6>
-
+                            <h6 class="card-description">
+                                <em>{{ vehicle.model.type.name }}</em> - <strong>{{ vehicle.model.classification.name }}</strong>
+                            </h6>
                             <h5 class="card-title">
                                 {{ vehicle.model.brand.name }} <strong>{{ vehicle.model.name }}</strong>
                             </h5>
-                            <p class="card-description">
+                            <h3 class="category text-primary">
                                 123 €
-                            </p>
+                            </h3>
                             <div class="card-footer">
                                 <div class="author">
-                                    <span>Mike John</span>
+                                    <span>{{ vehicle.color }}</span>
                                 </div>
                                 <div class="stats stats-right">
                                     <a href="#"><i class="now-ui-icons shopping_credit-card"></i> Réserver</a>
                                 </div>
-                                {# <a href="#"><i class="now-ui-icons shopping_credit-card"></i> Réserver</a> #}
                             </div>
                         </div>
                     </div>
                 </div>
+
             {% endfor %}
 
         </div>

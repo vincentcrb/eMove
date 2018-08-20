@@ -3705,7 +3705,8 @@ p {
 .category {
   text-transform: capitalize;
   font-weight: 300;
-  color: #9A9A9A; }
+  color: #9A9A9A;
+  margin: inherit; }
   .category strong {
     font-weight: 700; }
 
@@ -3898,49 +3899,55 @@ body {
     background-color: #2c2c2c;
     color: #FFB400; }
 
-.fastevent {
+.meocard {
   background-color: #FFFFFF;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem; }
-  .fastevent .header {
+  .meocard .header {
     padding-top: 1.25rem; }
-    .fastevent .header .category {
+    .meocard .header .type {
       margin: 0;
+      float: left;
       text-align: center;
       color: #FFB400; }
-  .fastevent .body {
+    .meocard .header .classification {
+      margin: 0;
+      float: right;
+      text-align: center;
+      color: #FFB400; }
+  .meocard .body {
     padding: 1.4rem; }
-    .fastevent .body .col-md-8 .title {
+    .meocard .body .col-md-8 .title {
       margin: 0;
       padding: 0;
       text-align: left;
       font-size: 1.5rem; }
-    .fastevent .body .col-md-8 .organizer {
+    .meocard .body .col-md-8 .organizer {
       font-size: .9em; }
-      .fastevent .body .col-md-8 .organizer span {
+      .meocard .body .col-md-8 .organizer span {
         font-weight: 500;
         color: #ffd777; }
-    .fastevent .body .col-md-8 .description {
+    .meocard .body .col-md-8 .description {
       padding-top: .5rem;
       font-size: 1.3em;
       font-weight: 400;
       color: #2c2c2c;
       text-align: justify; }
-    .fastevent .body .col-md-4 {
+    .meocard .body .col-md-4 {
       text-align: center; }
-      .fastevent .body .col-md-4 .location p {
+      .meocard .body .col-md-4 .location p {
         margin: 0; }
-      .fastevent .body .col-md-4 .location button {
+      .meocard .body .col-md-4 .location button {
         margin: 0; }
-  .fastevent .footer {
+  .meocard .footer {
     margin: 0;
     padding-top: .6rem;
     padding-bottom: .4rem;
     background-color: #F1F1F1;
     font-size: .8em; }
-    .fastevent .footer p {
+    .meocard .footer p {
       margin: 0; }
-    .fastevent .footer .light {
+    .meocard .footer .light {
       color: red;
       margin-top: 3px; }
 
@@ -5979,8 +5986,7 @@ Created using IcoMoon - icomoon.io
   .card .card-image {
     position: relative; }
   .card .card-footer {
-    padding: 0;
-    margin-top: 15px;
+    padding: 1rem;
     background-color: transparent;
     border: 0; }
     .card .card-footer div {
