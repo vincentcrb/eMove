@@ -16,18 +16,20 @@
 	    <div class="collapse navbar-collapse show" data-color="orange" data-nav-image="../assets/img//blurred-image-1.jpg" style="">
 			<ul class="navbar-nav ml-auto">
 
-                {% if app.user.isadmin %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('dashboard') }}">
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a href="{{ path("my_reservation") }}" class="nav-link">
-                            <p>Mes réservations</p>
-                        </a>
-                    </li>
+                {% if app.user %}
+                    {% if app.user.isadmin %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('dashboard') }}">
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ path("my_reservation") }}" class="nav-link">
+                                <p>Mes réservations</p>
+                            </a>
+                        </li>
+                    {% endif %}
                 {% endif %}
 
                 <li class="nav-item">
