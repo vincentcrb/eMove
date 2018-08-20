@@ -33,8 +33,6 @@ class ModelType extends AbstractType
             ])
             ->add('name', TextType::class)
             ->add('image', FileType::class, array('label' => 'Image JPG, PNG'))
-            ->add('hour_rate', TextType::class)
-            ->add('kilometer_rate', TextType::class)
             ->add('save', SubmitType::class)
         ;
     }
