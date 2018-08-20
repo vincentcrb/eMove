@@ -63,24 +63,24 @@ class Reservation
         return $this->id;
     }
 
-    public function getDateStart(): ?\DateInterface
+    public function getDateStart()
     {
         return $this->date_start;
     }
 
-    public function setDateStart(?\DateInterface $date_start): self
+    public function setDateStart($date_start): self
     {
         $this->date_start = $date_start;
 
         return $this;
     }
 
-    public function getDateEnd(): ?\DateInterface
+    public function getDateEnd()
     {
         return $this->date_end;
     }
 
-    public function setDateEnd(?\DateInterface $date_end): self
+    public function setDateEnd($date_end): self
     {
         $this->date_end = $date_end;
 

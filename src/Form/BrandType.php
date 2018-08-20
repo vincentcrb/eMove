@@ -16,7 +16,6 @@ class BrandType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('image', FileType::class, array('label' => 'Image JPG, PNG'))
             ->add('save', SubmitType::class)
         ;
     }

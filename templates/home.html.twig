@@ -1,17 +1,7 @@
-{% extends "default/layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
+{% block container %}
 
-    <div class="container">
-        <div class="jumbotron">
-            <div class="container mx-auto text-center">
-                <h1 class="display-4">Welcome {{ app.user.username }}</h1>
-            </div>
-        </div>
-
-        <a class="nav-link" href="{{ path('list_vehicles') }}">Vehicles</a>
-        <a class="nav-link" href="{{ path('my_reservation') }}">Mes réservations</a>
-    </div>
 
 {% endblock %}
 

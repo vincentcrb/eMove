@@ -1,11 +1,35 @@
-{% extends "default/layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
+{% block container %}
 
-    <a class="nav-link nav-btn" href="{{ path('add_brand') }}">Ajout Marque</a>
-    <a class="nav-link nav-btn" href="{{ path('add_classification') }}">Ajout Gamme</a>
-    <a class="nav-link nav-btn" href="{{ path('add_model') }}">Ajout Modèle</a>
-    <a class="nav-link nav-btn" href="{{ path('add_vehicle') }}">Ajout véhicule</a>
+    <div class="blogs-4">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+            <h2 class="title">Ajout </h2>
+
+            <ul class="nav nav-pills nav-pills-danger justify-content-center" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('add_brand') }}" role="tablist">
+                        Marque
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('add_classification') }}" role="tablist">
+                        Gamme
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('add_model') }}" role="tablist">
+                        Modèle
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('add_vehicle') }}" role="tablist">
+                        véhicule
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 {{ render(controller(
     'App\\Controller\\AdminController::listVehicles'

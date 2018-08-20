@@ -1,9 +1,14 @@
-{% extends "default/layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
+{% block container %}
 
-{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+    <div class="blogs-4">
+        <h2 class="title">Ajout Véhicule </h2>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+    </div>
 
 {% endblock %}
