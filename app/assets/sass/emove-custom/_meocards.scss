@@ -1,15 +1,25 @@
-.fastevent {
+.meocard {
     background-color: $white-color;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
     .header {
         padding-top: 1.25rem;
-        .category {
+        .type {
             margin: 0;
+            float: left;
+            text-align: center;
+            color: $meo-primary;
+        }
+        .classification {
+            margin: 0;
+            float: right;
             text-align: center;
             color: $meo-primary;
         }
     } // /header
+    .card-image {
+
+    } // /card-image
     .body {
         padding: 1.4rem;
         .col-md-8 {
@@ -66,7 +76,7 @@
             margin-top: 3px;
         }
     } // /footer
-} // /fastevent
+} // /meocard
 
 
 
