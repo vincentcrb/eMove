@@ -49,9 +49,14 @@ class Reservation
     private $vehicle;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Kilometer", inversedBy="reservations")
      */
-    private $status;
+    private $kilometer;
+
+    // /**
+    //  * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="reservations")
+    //  */
+    // private $status;
 
     public function getId()
     {
@@ -136,15 +141,28 @@ class Reservation
         return $this;
     }
 
-    public function getStatus(): ?Status
+    public function getKilometer(): ?Kilometer
     {
-        return $this->status;
+        return $this->kilometer;
     }
 
-    public function setStatus(?Status $status): self
+    public function setKilometer(?Kilometer $kilometer): self
     {
-        $this->status = $status;
+        $this->kilometer = $kilometer;
 
         return $this;
     }
+
+
+    // public function getStatus(): ?Status
+    // {
+    //     return $this->status;
+    // }
+
+    // public function setStatus(?Status $status): self
+    // {
+    //     $this->status = $status;
+
+    //     return $this;
+    // }
 }

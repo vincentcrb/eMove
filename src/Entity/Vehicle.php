@@ -26,11 +26,6 @@ class Vehicle
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $serial_number;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $color;
 
     /**
@@ -39,9 +34,14 @@ class Vehicle
     private $license_plate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="vehicle")
+     * @ORM\Column(name="isDispo", type="boolean", nullable=true)
      */
-    private $status;
+    private $isDispo;
+
+    // /**
+    //  * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="vehicle")
+    //  */
+    // private $status;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="vehicle")
@@ -53,9 +53,14 @@ class Vehicle
         $this->reservations = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
+    }
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getModel(): ?Model
@@ -82,29 +87,17 @@ class Vehicle
         return $this;
     }
 
-    public function getStatus(): ?Status
-    {
-        return $this->status;
-    }
+    // public function getStatus(): ?Status
+    // {
+    //     return $this->status;
+    // }
 
-    public function setStatus(?Status $status): self
-    {
-        $this->status = $status;
+    // public function setStatus(?Status $status): self
+    // {
+    //     $this->status = $status;
 
-        return $this;
-    }
-
-    public function getSerialNumber(): ?string
-    {
-        return $this->serial_number;
-    }
-
-    public function setSerialNumber(?string $serial_number): self
-    {
-        $this->serial_number = $serial_number;
-
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getLicensePlate(): ?string
     {
@@ -117,6 +110,30 @@ class Vehicle
 
         return $this;
     }
+
+    /**
+     * Set isDispo
+     *
+     * @param boolean $isDispo
+     *
+     * @return Vehicle
+     */
+    public function setIsDispo($isDispo)
+    {
+        $this->isDispo = $isDispo;
+
+        return $this;
+    }
+    /**
+     * Get isDispo
+     *
+     * @return boolean
+     */
+    public function getIsDispo()
+    {
+        return $this->isDispo;
+    }
+
 
     /**
      * @return Collection|Reservation[]
