@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block container %}
+{% block wrapper %}
 
 <div class="blogs-4">
 
@@ -11,38 +11,36 @@
 
     <div class="container">
         <div class="row">
-{# FOR #}
-            <div class="col-md-4">
-                <div class="card card-blog">
-                    <div class="card-image">
-                        <a href="#pablo">
-                            <img class="img rounded" src=" {{ asset('build/assets/img/__img/card-blog2.jpg') }} ">
-                        </a>
-                    </div>
+            {% for vehicle in vehicles %}
+                <div class="col-md-4">
+                    <div class="card card-blog">
+                        <div class="card-image">
+                            <a href="#pablo">
+                                <img class="img rounded" src=" {{ asset('build/assets/img/__img/card-blog2.jpg') }} ">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="category text-primary"><em>{{ vehicle.model.type.name }}</em> - <strong>{{ vehicle.model.classification.name }}</strong></h6>
 
-                    <div class="card-body">
-                        <h6 class="category text-primary">Type</h6>
-
-                        <h5 class="card-title">
-                            Marque - <strong>Modèle</strong>
-                        </h5>
-                        <p class="card-description">
-                            Sérial Number ou autre
-                        </p>
-                        <div class="card-footer">
-                            <a href="#"><i class="now-ui-icons shopping_credit-card"></i> Réserver</a>
-                            {# <div class="author">
-                                <img src=" {{ asset('build/assets/img/__img/julie.jpg') }} " alt="..." class="avatar img-raised">
-                                <span>Mike John</span>
-                            </div> #}
-                            {# <div class="stats stats-right">
-                                <a href="#"><i class="now-ui-icons shopping_credit-card"></i> Réserver</a>
-                            </div> #}
+                            <h5 class="card-title">
+                                {{ vehicle.model.brand.name }} <strong>{{ vehicle.model.name }}</strong>
+                            </h5>
+                            <p class="card-description">
+                                123 €
+                            </p>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <span>Mike John</span>
+                                </div>
+                                <div class="stats stats-right">
+                                    <a href="#"><i class="now-ui-icons shopping_credit-card"></i> Réserver</a>
+                                </div>
+                                {# <a href="#"><i class="now-ui-icons shopping_credit-card"></i> Réserver</a> #}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-{# end FOR #}
+            {% endfor %}
 
         </div>
     </div>

@@ -97,8 +97,12 @@ p{
 }
 .category{
     text-transform: capitalize;
-    font-weight: $font-weight-bold;
+    font-weight: $font-weight-light;
     color: $dark-gray;
+    strong{
+        font-weight: $font-weight-bold;
+    }    
+
 }
 .text-primary {
   color: $brand-primary !important;

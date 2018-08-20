@@ -3704,8 +3704,10 @@ p {
 
 .category {
   text-transform: capitalize;
-  font-weight: 700;
+  font-weight: 300;
   color: #9A9A9A; }
+  .category strong {
+    font-weight: 700; }
 
 .text-primary {
   color: #f96332 !important; }
@@ -5908,14 +5910,17 @@ Created using IcoMoon - icomoon.io
   width: 100%;
   margin-bottom: 30px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2); }
-  .card .author .avatar {
-    width: 30px;
-    height: 30px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin-right: 5px; }
-  .card .author span {
-    color: #9A9A9A; }
+  .card .author {
+    float: left; }
+    .card .author .avatar {
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      border-radius: 50%;
+      margin-right: 5px; }
+    .card .author span {
+      color: #9A9A9A;
+      text-align: left; }
   .card .info {
     padding: 40px 0 40px;
     text-align: center;
