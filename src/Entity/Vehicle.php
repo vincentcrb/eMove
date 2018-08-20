@@ -38,11 +38,6 @@ class Vehicle
      */
     private $isDispo;
 
-    // /**
-    //  * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="vehicle")
-    //  */
-    // private $status;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="vehicle")
      */
@@ -86,18 +81,6 @@ class Vehicle
 
         return $this;
     }
-
-    // public function getStatus(): ?Status
-    // {
-    //     return $this->status;
-    // }
-
-    // public function setStatus(?Status $status): self
-    // {
-    //     $this->status = $status;
-
-    //     return $this;
-    // }
 
     public function getLicensePlate(): ?string
     {

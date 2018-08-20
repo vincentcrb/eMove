@@ -13,6 +13,8 @@
         <div class="row">
             {% for vehicle in vehicles %}
 
+            {% if vehicle.isDispo == 1 %}
+
                 <div class="col-md-4">
                     <div class="card card-blog">
                         <div class="card-image">
@@ -41,6 +43,8 @@
                         </div>
                     </div>
                 </div>
+
+            {% endif %}
 
             {% endfor %}
 

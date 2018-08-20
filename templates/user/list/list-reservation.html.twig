@@ -13,6 +13,7 @@
                     <th>Date fin</th>
                     <th>Modèle</th>
                     <th>Marque</th>
+                    <th>Immatriculation</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                             <td>{{ reservation.dateEnd|date('Y-m-d') }}</td>
                             <td>{{ reservation.vehicle.model.name }}</td>
                             <td>{{ reservation.vehicle.model.brand.name }}</td>
+                            <td>{{ reservation.vehicle.licenseplate }}</td>
                         </tr>
                 {% endfor %}
                 </tbody>
