@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Manager\BrandManager;
+use App\Manager\ReservationManager;
 use App\Manager\VehicleManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Manager\UserManager;
@@ -67,5 +68,14 @@ class AdminController extends Controller
     {
         $brandManager->deleteBrand($id);
         return $this->redirectToRoute("dashboard");
+    }
+
+    /**
+     * @Route("/admin/reservations", name="admin_list_reservations")
+     */
+    public function listReservations(ReservationManager $reservationManager)
+    {
+        $reservation = $reservationManager->getReservations();
+        return $this->render('admin/list/list-reservations.html.twig', ['reservations' => $reservation]);
     }
 }

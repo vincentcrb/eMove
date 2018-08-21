@@ -72,4 +72,18 @@ class ReservationController extends Controller
         $html2pdf->writeHTML ($content);
         $html2pdf->output('facture-'.$idReservation.'.pdf', 'D');
     }
+
+    /**
+     * @Route("/admin/close/{idReservation}", name="close_reservation")
+     */
+    public function closeReservation(Request $request, ReservationManager $reservationManager, $idReservation)
+    {
+        $myReservation = $reservationManager->getReservation($idReservation);
+
+        dump($myReservation);
+        $reservationManager->closeReservation($myReservation);
+
+        $reservation = $reservationManager->getReservations();
+        return $this->render('admin/list/list-reservations.html.twig', ['reservations' => $reservation]);
+    }
 }

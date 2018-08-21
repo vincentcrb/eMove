@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+
+    <div class="container col-offset-2 col-12">
+        <h1>Mes réservations</h1>
+        <div class="table-responsive col-12">
+            <table class="table table-striped table-sm table-admin">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date début</th>
+                    <th>Date fin</th>
+                    <th>Modèle</th>
+                    <th>Marque</th>
+                    <th>Immatriculation</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.id }}</td>
+                        <td>{{ reservation.dateStart|date('Y-m-d') }}</td>
+                        <td>{{ reservation.dateEnd|date('Y-m-d') }}</td>
+                        <td>{{ reservation.vehicle.model.name }}</td>
+                        <td>{{ reservation.vehicle.model.brand.name }}</td>
+                        <td>{{ reservation.vehicle.licenseplate }}</td>
+                        {% if reservation.status.id == 1 %}
+                            <td><a href="{{ path('close_reservation', {'idReservation': reservation.id}) }}">{{ reservation.status.name }}</a></td>
+                        {% else %}
+                            <td>{{ reservation.status.name }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

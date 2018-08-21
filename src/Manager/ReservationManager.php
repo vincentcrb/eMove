@@ -51,6 +51,22 @@ class ReservationManager
         $this->em->flush();
     }
 
+    public function closeReservation($idReservation)
+    {
+        /** @var Vehicle $idVehicle */
+        $reservation = $this->em->getRepository(Reservation:: class)
+            ->find($idReservation);
+
+        /** @var Status $status */
+        $status = $this->em->getRepository(Status:: class)
+            ->find(3);
+
+        $reservation->setStatus($status);
+
+        $this->em->persist($reservation);
+        $this->em->flush();
+    }
+
     public function myReservation(User $user)
     {
         return $user->getReservations();

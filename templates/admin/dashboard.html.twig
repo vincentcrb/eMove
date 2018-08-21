@@ -29,10 +29,24 @@
                 </li>
             </ul>
         </div>
-    </div>
 
-{{ render(controller(
-    'App\\Controller\\AdminController::listVehicles'
-)) }}
+        <div class="col-md-8 ml-auto mr-auto text-center">
+            <h2 class="title">Liste</h2>
+
+            <ul class="nav nav-pills nav-pills-danger justify-content-center" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('admin_list_vehicles') }}" role="tablist">
+                        Vehicules
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin_list_reservations') }}" role="tablist">
+                        Réservation
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
 
 {% endblock %}
