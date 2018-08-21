@@ -22,11 +22,6 @@ class VehicleType extends AbstractType
                 'class' => Model:: class,
                 'choice_label' => 'name'
             ])
-            ->add('status', EntityType::class, [
-                'class' => Status:: class,
-                'choice_label' => 'name'
-            ])
-            ->add('serial_number', TextType::class)
             ->add('license_plate', TextType::class)
             ->add('color', TextType::class)
             ->add('save', SubmitType::class)

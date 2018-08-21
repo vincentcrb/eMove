@@ -26,15 +26,11 @@ class ReservationManager
         $idVehicle = $this->em->getRepository(Vehicle:: class)
             ->find($vehicle);
 
-        /** @var Status $statusVehicle */
-        /*$statusVehicle = $this->em->getRepository(Status:: class)
-            ->find(6);*/
-
-        $statusVehicle = $idVehicle->setIsDispo(0);
-
         /** @var Status $status */
         $status = $this->em->getRepository(Status:: class)
             ->find(1);
+
+        $statusVehicle = $idVehicle->setIsDispo(0);
 
         $reservation
             ->setDateStart($reservation->getDateStart())
@@ -53,7 +49,7 @@ class ReservationManager
 
     public function closeReservation($idReservation)
     {
-        /** @var Vehicle $idVehicle */
+        /** @var Reservation $reservation */
         $reservation = $this->em->getRepository(Reservation:: class)
             ->find($idReservation);
 
@@ -61,9 +57,20 @@ class ReservationManager
         $status = $this->em->getRepository(Status:: class)
             ->find(3);
 
+        $vehicle = $reservation->getVehicle();
+
+        /** @var Vehicle $idVehicle */
+        $idVehicle = $this->em->getRepository(Vehicle:: class)
+            ->find($vehicle);
+
+        $statusVehicle = $idVehicle->setIsDispo(1);
+
         $reservation->setStatus($status);
 
         $this->em->persist($reservation);
+        $this->em->flush();
+
+        $this->em->persist($statusVehicle);
         $this->em->flush();
     }
 
