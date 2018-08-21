@@ -61,4 +61,10 @@ class ReservationManager
         return $this->em->getRepository(Reservation:: class)
             ->findAll();
     }
+
+    public function getReservation($id)
+    {
+        return $this->em->getRepository(Reservation:: class)
+            ->find($id);
+    }
 }

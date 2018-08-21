@@ -1,0 +1,8 @@
+<h1>{{ user.username }}</h1>
+
+<h3>{{ reservation.id }}</h3>
+<h3>{{ reservation.dateStart|date('Y-m-d') }}</h3>
+<h3>{{ reservation.dateEnd|date('Y-m-d') }}</h3>
+<h3>{{ reservation.vehicle.model.name }}</h3>
+<h3>{{ reservation.vehicle.model.brand.name }}</h3>
+<h3>{{ reservation.vehicle.licenseplate }}</h3>
