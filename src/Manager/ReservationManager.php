@@ -30,11 +30,11 @@ class ReservationManager
         /*$statusVehicle = $this->em->getRepository(Status:: class)
             ->find(6);*/
 
-        $statusVehicle = $idVehicle->setIsDispo(1);
+        $statusVehicle = $idVehicle->setIsDispo(0);
 
         /** @var Status $status */
         $status = $this->em->getRepository(Status:: class)
-            ->find(0);
+            ->find(1);
 
         $reservation
             ->setDateStart($reservation->getDateStart())

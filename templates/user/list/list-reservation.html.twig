@@ -14,6 +14,7 @@
                     <th>Modèle</th>
                     <th>Marque</th>
                     <th>Immatriculation</th>
+                    <th>Status</th>
                     <th>Facture</th>
                 </tr>
                 </thead>
@@ -26,7 +27,12 @@
                             <td>{{ reservation.vehicle.model.name }}</td>
                             <td>{{ reservation.vehicle.model.brand.name }}</td>
                             <td>{{ reservation.vehicle.licenseplate }}</td>
-                            <td><a href="{{ path('show_reservation', {'idReservation': reservation.id}) }}">Facture</a></td>
+                            <td>{{ reservation.status.name }}</td>
+                            {% if reservation.status.id == 3 %}
+                                <td><a href="{{ path('show_reservation', {'idReservation': reservation.id}) }}">Télécharger</a></td>
+                            {% else %}
+                                <td>En attente</td>
+                            {% endif %}
                         </tr>
                 {% endfor %}
                 </tbody>
