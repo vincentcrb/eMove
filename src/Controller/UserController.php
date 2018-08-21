@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserController extends Controller
 {
@@ -53,6 +54,25 @@ class UserController extends Controller
             'error' => $error
         ]);
     }
+
+
+
+    /**
+     * @Route("/home/profil", name="profil")
+     */
+    public function profilUser()
+    {
+        $user = $this->getUser();
+
+        if ($user == null) {
+            throw new NotFoundHttpException('404, Utilisateur non trouvé');
+        }
+        return $this->render('user/profil/profil-page.html.twig', [
+            'user' => $user
+        ]);
+    }
+
+
 
     /**
      * @Route("/sign-out", name="sign_out")
