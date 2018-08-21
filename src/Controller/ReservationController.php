@@ -80,10 +80,8 @@ class ReservationController extends Controller
     {
         $myReservation = $reservationManager->getReservation($idReservation);
 
-        dump($myReservation);
         $reservationManager->closeReservation($myReservation);
 
-        $reservation = $reservationManager->getReservations();
-        return $this->render('admin/list/list-reservations.html.twig', ['reservations' => $reservation]);
+        return $this->redirectToRoute("admin_list_reservations");
     }
 }
