@@ -32,66 +32,27 @@
                     {% endif %}
                 {% endif %}
 
-				<li class="nav-item">
-					<a  href="{{ path('profil') }}" class="nav-link">
-						<i class="now-ui-icons users_single-02"></i>
-						Profile Page
-					</a>
-				</li>
-
-
 
                 <li class="nav-item">
                     <a href="{{ path("list_vehicles") }}" class="nav-link">
                         <p>Voitures</p>
                     </a>
                 </li>
-
+                {% if app.user %}
 				<li class="nav-item dropdown">
 					<a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">
 						<i class="now-ui-icons design_image" aria-hidden="true"></i>
-						<p>Examples</p>
+						<p>{{ app.user.username }}</p>
 					</a>
+                    {% endif %}
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="../examples/about-us.html">
-							<i class="now-ui-icons business_bulb-63"></i>
-							About-us
-						</a>
-						<a class="dropdown-item" href="../examples/blog-post.html">
+						<a class="dropdown-item" href="{{ path('profil') }}">
 							<i class="now-ui-icons text_align-left"></i>
-							Blog Post
+							Profile Page
 						</a>
-						<a class="dropdown-item" href="../examples/blog-posts.html">
-							<i class="now-ui-icons design_bullet-list-67"></i>
-							Blog Posts
-						</a>
-						<a class="dropdown-item" href="../examples/contact-us.html">
-							<i class="now-ui-icons location_pin"></i>
-							Contact Us
-						</a>
-						<a class="dropdown-item" href="../examples/landing-page.html">
-							<i class="now-ui-icons education_paper"></i>
-							Landing Page
-						</a>
-						<a class="dropdown-item" href="../examples/login-page.html">
-							<i class="now-ui-icons users_circle-08"></i>
-							Login Page
-						</a>
-						<a class="dropdown-item" href="../examples/pricing.html">
-							<i class="now-ui-icons business_money-coins"></i>
-							Pricing
-						</a>
-						<a class="dropdown-item" href="../examples/ecommerce.html">
-							<i class="now-ui-icons shopping_shop"></i>
-							Ecommerce Page
-						</a>
-						<a class="dropdown-item" href="../examples/product-page.html">
-							<i class="now-ui-icons shopping_bag-16"></i>
-							Product Page
-						</a>
-						<a class="dropdown-item" href="../examples/signup-page.html">
-							<i class="now-ui-icons tech_mobile"></i>
-							Signup Page
+						<a class="dropdown-item" href="{{ path('logout') }}">
+							<i class="now-ui-icons business_bulb-63"></i>
+							Logout
 						</a>
 					</div>
 				</li>
