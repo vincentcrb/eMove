@@ -73,7 +73,6 @@ class UserController extends Controller
     }
 
 
-
     /**
      * @Route("/sign-out", name="sign_out")
      */

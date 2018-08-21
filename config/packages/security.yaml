@@ -20,9 +20,10 @@ security:
                 login_path: sign_in
                 check_path: sign_in
                 default_target_path: list_vehicles
+
             logout:
-                path: sign_out
-                target: sign_in
+                path:   /logout
+                target: /
 
     access_control:
         - { path: ^/home, roles: ["ROLE_USER", "ROLE_ADMIN"]}
