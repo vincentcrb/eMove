@@ -50,4 +50,17 @@ class VehicleController extends Controller
             // 'price' => $price
         ]);
     }
+
+    public function searchBarAction()
+    {
+
+        $form = $this->createFormBuilder(null)
+            ->add('search', CheckboxType::class)
+            ->getForm();
+
+        return $this->render('/searchBar.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
 }
