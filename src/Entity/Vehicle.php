@@ -34,9 +34,9 @@ class Vehicle
     private $license_plate;
 
     /**
-     * @ORM\Column(name="isDispo", type="boolean", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="vehicle")
      */
-    private $isDispo;
+    private $status;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="vehicle")
@@ -93,30 +93,6 @@ class Vehicle
 
         return $this;
     }
-
-    /**
-     * Set isDispo
-     *
-     * @param boolean $isDispo
-     *
-     * @return Vehicle
-     */
-    public function setIsDispo($isDispo)
-    {
-        $this->isDispo = $isDispo;
-
-        return $this;
-    }
-    /**
-     * Get isDispo
-     *
-     * @return boolean
-     */
-    public function getIsDispo()
-    {
-        return $this->isDispo;
-    }
-
 
     /**
      * @return Collection|Reservation[]

@@ -1,0 +1,103 @@
+<div class="blogs-4">
+    <div class="col-md-12 ml-auto mr-auto">
+        <h4 class="title text-center">Rechercher un véhicule disponible</h4>
+
+        <form action="{{ path('list_vehicles') }}" method="post">
+
+            <div class="searchbar">
+
+                <div class="row required">
+                    <div class="col-md-12">
+                        <div class="title text-danger">champs requis *</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="title">
+                            type <span class="text-danger">*</span>
+                        </div>
+                        <br/>
+                        <div class="row text-center">
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                        Voiture
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                        Moto
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="title">
+                            date <span class="text-danger">*</span>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-md-5 offset-md-1">
+                                <label>date de retrait</label>
+                                <div class="datepicker-container">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control datepicker" value="10/05/2016">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <label>date de retour</label>
+                                <div class="datepicker-container">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control datepicker" value="10/05/2016">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> {# end : required #}
+
+                    {# {{ form_label(form.name) }}
+                    {{ form_widget(form.name, { 'attr': {'class': 'form-control mb-3'} }) }}
+                    {{ form_rest(form) }} #}
+
+                <hr>
+
+                <div class="optional">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+                                <div class="card card-plain">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            Afficher plus de critères de recherche
+                                            <i class="now-ui-icons arrows-1_minimal-down"></i>
+                                        </a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="card-body">
+                                            Les Autres Critères
+                                        </div>
+                                    </div>
+                                </div>                        
+                            </div>
+                        </div>
+                    </div>
+                </div> {# end : optional #}
+                <div class="text-center">
+                    <button class="btn btn-primary btn-round btn-lg" type="submit">Lancer la recherche</a>
+                </div>
+
+                {# <button></button> #}
+
+            </div> {# end : searchbar #}
+
+            {# {{ form_rest(form) }} #}
+        
+        </form>
+    </div>
+</div>

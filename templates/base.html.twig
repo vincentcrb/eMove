@@ -8,6 +8,9 @@
 <body>
 
     {# {% if is_granted('ROLE_USER') %} #}
+        {% block navbar %}
+            <nav class="navbar navbar-expand-lg bg-white fixed-top ">
+        {% endblock %}
         {% include 'default/navbar.html.twig' %}
     {# {% endif %} #}
 

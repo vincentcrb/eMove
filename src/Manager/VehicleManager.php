@@ -47,4 +47,6 @@ class VehicleManager {
         return $this->em->getRepository(Vehicle:: class)
             ->find($id);
     }
+
+
 }
