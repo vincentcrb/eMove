@@ -54,6 +54,20 @@ class ReservationController extends Controller
     }
 
     /**
+     * @Route("/reservation/price", name="price_reservation")
+     */
+    public function priceReservation(Request $request, ReservationManager $reservationManager)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+
+        $reservation = $reservationManager->myReservation($user);
+
+        return $this->render('user/list/list-reservation.html.twig', ['reservations' => $reservation]);
+
+    }
+
+    /**
      * @Route("/reservation/details/{idReservation}", name="show_reservation")
      */
     public function showReservation(Request $request, ReservationManager $reservationManager, $idReservation)

@@ -4,8 +4,12 @@
 namespace App\Manager;
 
 
+use App\Entity\Brand;
+use App\Entity\Classification;
+use App\Entity\Model;
 use App\Entity\Reservation;
 use App\Entity\Status;
+use App\Entity\Type;
 use App\Entity\User;
 use App\Entity\Vehicle;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,12 +36,20 @@ class ReservationManager
 
         $statusVehicle = $idVehicle->setIsDispo(0);
 
+        $dateStart = $reservation->getDateStart();
+        $dateEnd = $reservation->getDateEnd();
+
+        $diff = $dateStart->diff($dateEnd)->d;
+
+        $price = $this->priceReservation($vehicle,$diff);
+
         $reservation
-            ->setDateStart($reservation->getDateStart())
-            ->setDateEnd($reservation->getDateEnd())
+            ->setDateStart($dateStart)
+            ->setDateEnd($dateEnd)
             ->setUser($idUser)
             ->setVehicle($idVehicle)
             ->setStatus($status)
+            ->setPrice($price)
         ;
 
         $this->em->persist($reservation);
@@ -45,6 +57,43 @@ class ReservationManager
 
         $this->em->persist($statusVehicle);
         $this->em->flush();
+    }
+
+    public function priceReservation($idVehicle, $diffDate)
+    {
+        /** @var Vehicle $idVehicle */
+        $vehicle = $this->em->getRepository(Vehicle:: class)
+            ->find($idVehicle);
+
+        $idModel = $vehicle->getModel();
+
+        /** @var Model $model */
+        $model = $this->em->getRepository(Model:: class)
+            ->find($idModel);
+
+        $startingPrice = $model->getStartingPrice();
+        $idClassification = $model ->getClassification();
+        $idType = $model->getType();
+        $idBrand = $model->getBrand();
+
+        /** @var Classification $classification */
+        $classification = $this->em->getRepository(Classification:: class)
+            ->find($idClassification);
+
+        /** @var Type $type */
+        $type = $this->em->getRepository(Type:: class)
+            ->find($idType);
+
+        /** @var Brand $brand */
+        $brand = $this->em->getRepository(Brand:: class)
+            ->find($idBrand);
+
+        $classificationRate = $classification->getRate();
+        $typeRate = $type->getRate();
+        $brandRate = $brand->getRate();
+
+        return $price = ((($startingPrice * $classificationRate) * $typeRate) * $brandRate) * $diffDate;
+
     }
 
     public function closeReservation($idReservation)
