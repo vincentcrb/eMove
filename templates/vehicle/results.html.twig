@@ -1,0 +1,43 @@
+<div class="blogs-4">
+    <div class="col-md-8 ml-auto mr-auto text-center">
+        <h2 class="title">Les véhicules Disponibles</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            {% for vehicle in vehicles %}
+
+                <div class="col-md-4">
+                    <div class="card card-blog">
+                        <div class="card-image">
+                            <a href="#pablo">
+                                <img class="img rounded" src=" {{ asset('build/assets/img/__img/card-blog2.jpg') }} ">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-description">
+                                <em>{{ vehicle.model.type.name }}</em> - <strong>{{ vehicle.model.classification.name }}</strong>
+                            </h6>
+                            <h5 class="card-title">
+                                {{ vehicle.model.brand.name }} <strong>{{ vehicle.model.name }}</strong>
+                            </h5>
+                            <h3 class="category text-primary">
+                                123 €
+                            </h3>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <span>{{ vehicle.color }}</span>
+                                </div>
+                                <div class="stats stats-right">
+                                    <a href="{{ path('add_reservation', {'idVehicle': vehicle.id}) }}"><i class="now-ui-icons shopping_credit-card"></i> Réserver</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div>

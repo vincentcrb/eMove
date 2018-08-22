@@ -3899,55 +3899,28 @@ body {
     background-color: #2c2c2c;
     color: #FFB400; }
 
-.meocard {
-  background-color: #FFFFFF;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem; }
-  .meocard .header {
-    padding-top: 1.25rem; }
-    .meocard .header .type {
-      margin: 0;
-      float: left;
-      text-align: center;
-      color: #FFB400; }
-    .meocard .header .classification {
-      margin: 0;
-      float: right;
-      text-align: center;
-      color: #FFB400; }
-  .meocard .body {
-    padding: 1.4rem; }
-    .meocard .body .col-md-8 .title {
-      margin: 0;
-      padding: 0;
-      text-align: left;
-      font-size: 1.5rem; }
-    .meocard .body .col-md-8 .organizer {
-      font-size: .9em; }
-      .meocard .body .col-md-8 .organizer span {
-        font-weight: 500;
-        color: #ffd777; }
-    .meocard .body .col-md-8 .description {
-      padding-top: .5rem;
-      font-size: 1.3em;
-      font-weight: 400;
-      color: #2c2c2c;
-      text-align: justify; }
-    .meocard .body .col-md-4 {
-      text-align: center; }
-      .meocard .body .col-md-4 .location p {
-        margin: 0; }
-      .meocard .body .col-md-4 .location button {
-        margin: 0; }
-  .meocard .footer {
+.searchbar {
+  background-color: #fafafa;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1); }
+  .searchbar .required .title {
+    text-align: left;
+    font-weight: 300;
+    margin: 0 1rem; }
+  .searchbar .required .col-md-6 .title {
+    text-align: center;
+    font-weight: 700;
+    color: #FFB400; }
+  .searchbar .required .col-md-6 .datepicker-container {
+    text-align: center; }
+  .searchbar .footer {
     margin: 0;
     padding-top: .6rem;
     padding-bottom: .4rem;
     background-color: #F1F1F1;
     font-size: .8em; }
-    .meocard .footer p {
+    .searchbar .footer p {
       margin: 0; }
-    .meocard .footer .light {
+    .searchbar .footer .light {
       color: red;
       margin-top: 3px; }
 

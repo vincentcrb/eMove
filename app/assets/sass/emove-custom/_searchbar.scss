@@ -1,63 +1,28 @@
-.meocard {
-    background-color: $white-color;
+.searchbar {
+    background-color: $meobg-primary;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
-    .header {
-        padding-top: 1.25rem;
-        .type {
-            margin: 0;
-            float: left;
-            text-align: center;
-            color: $meo-primary;
+    // margin-bottom: 2rem;
+    .required {
+        .title {
+            text-align: left;
+            font-weight: $font-weight-light;
+            margin: 0 1rem;
         }
-        .classification {
-            margin: 0;
-            float: right;
-            text-align: center;
-            color: $meo-primary;
-        }
-    } // /header
-    .card-image {
-
-    } // /card-image
-    .body {
-        padding: 1.4rem;
-        .col-md-8 {
+        .col-md-6 {
             .title {
-                margin: 0;
-                padding: 0;
-                text-align: left;
-                font-size: 1.5rem; 
+                text-align: center;
+                font-weight: $font-weight-bold;
+                color: $meo-primary;
             }
-            .organizer {
-                font-size: .9em;                
-                span {
-                    font-weight: 500;
-                    color: $meo-secondary;
-                }
+            .datepicker-container {
+                text-align: center;
             }
-            .description {
-                padding-top: .5rem;
-                font-size: 1.3em;
-                font-weight: 400;
-                color: $black-color;                
-                text-align: justify;
-            }
-        } // /body col-md-8
-        .col-md-4 {
-            text-align: center;
-            .location {
-                p {
-                    margin: 0;
-                }
-                button {
-                    margin: 0;
-                }    
-            }
-            .date {
-            }
-        } // /body col-md-4
-    } // /body
+        }
+    }
+    .optional {
+        .classification {
+        }
+    }
     .footer {
         margin: 0;
         padding-top: .6rem;
