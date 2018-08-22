@@ -43,6 +43,11 @@ class Vehicle
      */
     private $reservations;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isDispo;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -121,6 +126,18 @@ class Vehicle
                 $reservation->setVehicle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsDispo(): ?bool
+    {
+        return $this->isDispo;
+    }
+
+    public function setIsDispo(?bool $isDispo): self
+    {
+        $this->isDispo = $isDispo;
 
         return $this;
     }
