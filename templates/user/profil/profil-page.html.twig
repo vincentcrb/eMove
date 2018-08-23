@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block container %}
-
+<div class="page-header header-filter" filter-color="orange">
+    <div class="page-header-image" style="background-image:url( {{ asset('build/assets/img/__img/bg22.jpg') }} )"></div>
     <div class="container col-offset-2 col-6">
         <h1>Mon compte</h1>
         <div class="table-responsive col-12">
@@ -23,5 +24,6 @@
             </table>
         </div>
     </div>
+</div>
 
 {% endblock %}

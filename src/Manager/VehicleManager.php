@@ -19,8 +19,8 @@ class VehicleManager {
     {
         $vehicle
             ->setModel($vehicle->getModel())
-            ->setSerialnumber($vehicle->getSerialnumber())
             ->setColor($vehicle->getColor())
+            ->setIsDispo(true)
             ->setLicenseplate($vehicle->getLicenseplate())
         ;
 

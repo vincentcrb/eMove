@@ -17,6 +17,8 @@
                 <tr>
                     <td>{{ user.id }}</td>
                     <td>{{ user.username }}</td>
+                    <td><a href="{{ path('admin_edit', {'id': user.id}) }}" class="btn btn-edit">Edit</a></td>
+                    <td><a href="{{ path('delete_user', {'id': user.id}) }}" class="btn btn-edit">Delete</a></td>
                 </tr>
             {% endfor %}
             </tbody>
