@@ -15,6 +15,7 @@
                     <th>Marque</th>
                     <th>Immatriculation</th>
                     <th>Status</th>
+                    <th>Retard</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,8 @@
                         {% else %}
                             <td>{{ reservation.status.name }}</td>
                         {% endif %}
+                        <td><a href="{{ path('late_reservation', {'idReservation': reservation.id}) }}">Mail</a></td>
+
                     </tr>
                 {% endfor %}
                 </tbody>

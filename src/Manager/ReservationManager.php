@@ -41,6 +41,7 @@ class ReservationManager
 
         $diff = $dateStart->diff($dateEnd)->d;
 
+        if ($dateStart->diff($dateEnd)->invert == 0){
         $price = $this->priceReservation($vehicle,$diff);
 
         $reservation
@@ -57,6 +58,10 @@ class ReservationManager
 
         $this->em->persist($statusVehicle);
         $this->em->flush();
+        }
+        else {
+            die;
+        }
     }
 
     public function priceReservation($idVehicle, $diffDate)

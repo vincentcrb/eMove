@@ -88,6 +88,28 @@ class ReservationController extends Controller
     }
 
     /**
+     * @Route("/admin/late/{idReservation}", name="late_reservation")
+     */
+    public function lateReservation(Request $request, ReservationManager $reservationManager, $idReservation, \Swift_Mailer $mailer)
+    {
+        $reservation = $reservationManager->getReservation($idReservation);
+
+        $message = (new \Swift_Message('Retard véhicule - eMove'))
+            ->setFrom('20100.crb@gmail.com')
+            ->setTo('vincent.carabin@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    'emails/late-reservation.html.twig'),
+                'text/html'
+            )
+        ;
+
+        $mailer->send($message);
+
+        return $this->redirectToRoute("admin_list_reservations");
+    }
+
+    /**
      * @Route("/admin/close/{idReservation}", name="close_reservation")
      */
     public function closeReservation(Request $request, ReservationManager $reservationManager, $idReservation)
