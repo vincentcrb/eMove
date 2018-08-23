@@ -3,14 +3,18 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\UserType;
 use App\Manager\BrandManager;
 use App\Manager\ReservationManager;
 use App\Manager\VehicleManager;
+use AppBundle\Form\UseradminType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Manager\UserManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminController extends Controller
 {
@@ -49,7 +53,16 @@ class AdminController extends Controller
     public function deleteVehicle(VehicleManager $vehiclesManager, $id)
     {
         $vehiclesManager->deleteVehicle($id);
-        return $this->redirectToRoute("dashboard");
+        return $this->redirectToRoute("admin_list_vehicles");
+    }
+
+    /**
+     * @Route("/admin/user_delete/{id}", name="delete_user")
+     */
+    public function deleteUser(UserManager $userManager, $id)
+    {
+        $userManager->deleteUser($id);
+        return $this->redirectToRoute("admin_list_users");
     }
 
     /**
@@ -77,5 +90,33 @@ class AdminController extends Controller
     {
         $reservation = $reservationManager->getReservations();
         return $this->render('admin/list/list-reservations.html.twig', ['reservations' => $reservation]);
+    }
+
+    /**
+     * @Route("/admin/user/edit/{id}", name="admin_edit")
+     */
+    public function editAction(UserManager $userManager, Request $request, UserPasswordEncoderInterface $passwordEncoder,  $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User:: class)
+            ->findOneBy(['id'=>$id]);
+        
+        $form = $this->createForm(UserType:: class, $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $user = $form->getData();
+            $password = password_hash($user->getPlainPassword(), PASSWORD_DEFAULT);
+            $user->setPassword($password);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('admin_list_users');
+        }
+
+        return $this->render('admin/list/edit_account.html.twig', [ 'form' => $form->createView()
+        ]);
     }
 }

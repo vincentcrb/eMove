@@ -1,8 +1,78 @@
-<h1>{{ user.username }}</h1>
+<!DOCTYPE html>
+<html>
 
-<h3>{{ reservation.id }}</h3>
-<h3>{{ reservation.dateStart|date('Y-m-d') }}</h3>
-<h3>{{ reservation.dateEnd|date('Y-m-d') }}</h3>
-<h3>{{ reservation.vehicle.model.name }}</h3>
-<h3>{{ reservation.vehicle.model.brand.name }}</h3>
-<h3>{{ reservation.vehicle.licenseplate }}</h3>
+
+<body>
+<div class="wrapper">
+
+    <p>À l'attention de</p>
+    <p>{{ app.user.firstName }} {{ app.user.lastName }},</p>
+    <p>Née le {{ app.user.birthDate|date('Y-m-d') }}</p>
+
+    <div class="table-title infos">
+        <div class="left">Resevation</div>
+        <div class="right">{{ reservation.dateStart|date('Y-m-d') }}</div>
+    </div>
+    <br><br>
+    <table>
+        <tr>
+            <th style="width: 30%">Facturer à</th>
+            <th style="width: 70%">{{ app.user.lastName }}
+                {{ app.user.firstName }}</th>
+        </tr>
+        <tr>
+            <td>
+                Instructions <br><br>
+            </td>
+            <td>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </td>
+        </tr>
+    </table>
+
+
+    <table>
+        <tr border="1">
+            <th style="width: 70%">Description</th>
+            <th style="width: 20%">Id</th>
+            <th style="width: 20%">Date Location</th>
+            <th style="width: 20%">Date retour</th>
+            <th style="width: 10%">Description</th>
+            <th style="width: 10%">Description</th>
+            <th style="width: 10%">license</th>
+        </tr>
+        <tr border="1">
+            <td>{{ reservation.vehicle.model.brand.name }} {{ reservation.vehicle.model.name }}</td>
+            <td>{{ reservation.id }}</td>
+            <td>{{ reservation.dateStart|date('Y-m-d') }}</td>
+            <td>{{ reservation.dateEnd|date('Y-m-d') }}</td>
+            <td>{{ reservation.vehicle.model.name }}</td>
+            <td>{{ reservation.vehicle.model.brand.name }}</td>
+            <td>{{ reservation.vehicle.licenseplate }}</td>
+        </tr>
+        <tr>
+            <td class="no-border"></td>
+            <td class="no-border"></td>
+            <td class="no-border"></td>
+            <td class="no-border"></td>
+            <td class="no-border"></td>
+            <td class="no-border"></td>
+            <td class="no-border"></td>
+        </tr>
+        <tr>
+            <td class="no-border"></td>
+            <td><strong>TOTAL</strong></td>
+            <td><strong>180$</strong></td>
+        </tr>
+    </table>
+
+
+        <p>Merci de votre confiance.</p>
+        <br>
+        <p>Cordialement,</p>
+        <p>Skander Kchouk</p>
+        <p>VP Finance, Club Reflets</p>
+
+</div>
+</body>
+</html>
