@@ -2,7 +2,7 @@
 
 
 ## Présentation
-Site Mobile pour la location de véhicules électriques.
+Site Web Responsive pour la location de véhicules électriques.
 
 ## Technologies
 - Symfony 4
@@ -30,7 +30,7 @@ php bin/console s:r
 ouvrir le lien -> localhost:8000
 ```
 
-### Utilisation de Gulp
+## Utilisation de Gulp
 
 ### Installation de Gulp
 - télécharger nodeJs
