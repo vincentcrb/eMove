@@ -4,9 +4,13 @@
 namespace App\Controller;
 
 use App\Entity\Vehicle;
+use App\Entity\Reservation;
 use App\Form\VehicleType;
+use App\Form\SearchType;
 use App\Manager\ReservationManager;
+use App\Manager\SearchManager;
 use App\Manager\VehicleManager;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,29 +41,56 @@ class VehicleController extends Controller
     /**
      * @Route("/vehicles", name="list_vehicles")
      */
-    public function listVehicles(VehicleManager $vehiclesManager, ReservationManager $reservationManager)
+    public function listVehicles(Request $request, VehicleManager $vehiclesManager, ReservationManager $reservationManager, SearchManager $searchManager)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $vehicle = $vehiclesManager->getVehicles();
+
+        if($request) {
+            $moto = $request->request->get('form')['moto'];
+        }
+        // $car = $request->request->get('form')['car'];
+        if($moto) {
+
+            // $qb_moto = $this->createQueryBuilder('v')
+            // ->findOneByIdJoinedToCategory($id)
+            // ->andWhere('p.price > :price')
+            // ->setParameter('price', $price)
+            // ->getQuery();
+
+            $vehicle = $em->getRepository(Vehicle::class)->findBy(
+                ['color' => 'beige']
+            );
+        }
+
+        
         $reservation = $reservationManager->getReservations();
 
         // $price = getPrice();
 
+        $prices = [55, 60, 68, 86, 80, 90, 91, 110, 90];
+
         return $this->render('vehicle/list-vehicles.html.twig', [
             'vehicles' => $vehicle,
             'reservations' => $reservation,
+            'prices' => $prices,
             // 'price' => $price
         ]);
     }
 
     public function searchBarAction()
     {
-
-        $form = $this->createFormBuilder(null)
-            ->add('search', CheckboxType::class)
+        
+        $searchForm = $this->createFormBuilder(null)
+            ->add('car', CheckboxType::class, array('required' => false))
+            ->add('moto', CheckboxType::class, array('required' => false))
+            // ->setAction($this->generateUrl('list_vehicles'))
             ->getForm();
 
-        return $this->render('/searchBar.html.twig', [
-            'form' => $form->createView()
+
+        return $this->render('vehicle/search.html.twig', [
+            'searchForm' => $searchForm->createView()
         ]);
     }
 

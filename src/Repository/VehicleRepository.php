@@ -22,6 +22,22 @@ class VehicleRepository extends ServiceEntityRepository
 //    /**
 //     * @return Vehicle[] Returns an array of Vehicle objects
 //     */
+
+    public function getTypeFromVehicules()
+    {
+    $qb = $this
+        ->createQueryBuilder('v')
+        ->leftJoin('v.model', 'm')
+        ->leftJoin('m.type', 't')
+        ->addSelect('t')
+    ;
+
+    return $qb
+        ->getQuery()
+        ->getResult()
+    ;
+    }
+
     /*
     public function findByExampleField($value)
     {

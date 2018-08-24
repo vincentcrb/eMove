@@ -2,7 +2,10 @@
 
 {% block wrapper %}
 
-{% include "vehicle/search.html.twig" %}
+{# {% include "vehicle/search.html.twig" %} #}
+
+{{ render( controller( 'App\\Controller\\VehicleController::searchBarAction' ) ) }}
+
 {% include "vehicle/results.html.twig" %}
 
 {% endblock %}

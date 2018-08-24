@@ -18,10 +18,11 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('kilometer', CheckboxType::class, array(
-                'label'    => 'Voiture',
-                'required' => false,
-            ))
+            ->add('car', CheckboxType::class, array('required' => false))
+            ->add('moto', CheckboxType::class, array('required' => false))
+        ;
+            // ->getForm();
+
             // ->add('moto', CheckboxType::class, array(
             //     'label'    => 'Moto',
             //     'required' => false,

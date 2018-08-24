@@ -31,6 +31,11 @@ class Vehicle
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $picture;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $license_plate;
 
     /**
@@ -42,7 +47,7 @@ class Vehicle
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="vehicle")
      */
     private $reservations;
-
+    
     /**
      * @ORM\Column(type="boolean")
      */
@@ -84,6 +89,16 @@ class Vehicle
     {
         $this->color = $color;
 
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
         return $this;
     }
 

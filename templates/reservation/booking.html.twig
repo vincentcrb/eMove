@@ -1,0 +1,149 @@
+{% extends "base.html.twig" %}
+
+{% block wrapper %}
+
+{# START SEARCH #}
+<div class="blogs-4">
+    <div class="col-md-12 ml-auto mr-auto">
+        <h4 class="title text-center">Rechercher un véhicule disponible</h4>
+        <div class="searchbar">
+            <div class="row required">
+                <div class="col-md-12">
+                    <div class="title text-danger">champs requis *</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="title">
+                        type <span class="text-danger">*</span>
+                    </div>
+                    <br/>
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    {# {{ form_widget(searchForm.car, { 'attr': {'class': 'form-check-input'} }) }} #}
+                                    <span class="form-check-sign"></span>
+                                    Voiture
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="moto-search">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" id="moto-search-checkbox">
+                                    <span class="form-check-sign"></span>
+                                    Moto
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="title">
+                        date <span class="text-danger">*</span>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-5 offset-md-1">
+                            <label>date de retrait</label>
+                            <div class="datepicker-container">
+                                <div class="form-group">
+                                    <input type="text" class="form-control datepicker" value="10/05/2016">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>date de retour</label>
+                            <div class="datepicker-container">
+                                <div class="form-group">
+                                    <input type="text" class="form-control datepicker" value="10/05/2016">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> {# end : required #}
+
+            <hr>
+
+            <div class="optional">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+                            <div class="card card-plain">
+                                <div class="card-header" role="tab" id="headingOne">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        Afficher plus de critères de recherche
+                                        <i class="now-ui-icons arrows-1_minimal-down"></i>
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="card-body">
+                                        Les Autres Critères
+                                    </div>
+                                </div>
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </div> {# end : optional #}
+            {# <div class="text-center">
+                <button class="btn btn-primary btn-round btn-lg" type="submit">Lancer la recherche</a>
+            </div> #}
+        </div> {# end : searchbar #}        
+    </div>
+</div>
+{# END SEARCH #}
+
+
+
+{# START RESULTS #}
+<div class="blogs-4">
+    <div class="col-md-8 ml-auto mr-auto text-center">
+        <h2 class="title">Les véhicules Disponibles</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            {# {% for vehicle in vehicles %}
+
+                <div class="col-md-4">
+                    <div class="card card-blog">
+                        <div class="card-image">
+                            <a href="#pablo">
+                                <img class="img rounded" src=" {{ asset('build/assets/img/__img/card-blog2.jpg') }} ">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="card-description">
+                                <em>{{ vehicle.model.type.name }}</em> - <strong>{{ vehicle.model.classification.name }}</strong>
+                            </h6>
+                            <h5 class="card-title">
+                                {{ vehicle.model.brand.name }} <strong>{{ vehicle.model.name }}</strong>
+                            </h5>
+                            <h3 class="category text-primary">
+                                123 €
+                            </h3>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <span>{{ vehicle.color }}</span>
+                                </div>
+                                <div class="stats stats-right">
+                                    <a href="{{ path('add_reservation', {'idVehicle': vehicle.id}) }}"><i class="now-ui-icons shopping_credit-card"></i> Réserver</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %} #}
+
+        </div>
+    </div>
+</div>
+{# END RESULTS #}
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/assets/js/booking.js') }}" type="text/javascript"></script>
+{% endblock %}
