@@ -58,13 +58,13 @@ ouvrir le lien -> localhost:3000
 
 ## Accès au site
 
- - Admin :
-    username : admin
-    password : admin 
+- Admin :
+    username -> admin
+    password -> admin 
  - User 1 :
-    username : user1
-    password : user
+    username -> user1
+    password -> user
  - User 2 :
-    username : user2
-    password : user
+    username -> user2
+    password -> user
     
